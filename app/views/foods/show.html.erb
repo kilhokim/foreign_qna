@@ -1,34 +1,224 @@
 <div class="container">
-  <% if !flash[:alert].nil? %>
-  <div class="alert alert-danger">
-    <%= flash[:alert] %>
+  <div id="content">
+    <div itemscope itemtype="http://schema.org/Article">
+      <link itemprop="image" href="//cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
+      <div id="herobox-mini">
+          <div id="hero-content">
+              <span id="controls">
+                  <a href="/about" id="tell-me-more" class="button">Take the 2-minute tour</a>
+                  <span id="close"><a title="click to dismiss">&times;</a></span>
+              </span>
+              <div id="blurb">
+                  Stack Overflow is a question and answer site for professional and enthusiast programmers. It&#39;s 100% free, no registration required.
+              </div>        
+          </div>
+      </div>
+      
+      <div id="question-header">
+        <h1 itemprop="name"><a href="#" class="question-hyperlink"><%= @post.title %></a></hr>
+      </div>
+      <div id="mainbar">
+        <div class="question" data-questionid="<%= @post.id %>" id="question">
+          <div class="everyonelovesstackoverflow" id="adzerk1712585738"></div>
+          <table>
+            <tbody>
+              <tr>
+                <td class="votecell">
+                  <div class="vote">
+                    <input type="hidden" name="_id_" value="<%= @post.id %>">
+                    <a class="vote-up-off">up vote</a>
+                    <span class="vote-count-post"><%= @post.votes %></span>
+                    <a class="vote-down-off">down vote</a>
+                    <a class="star-off" href="#">favorite</a>
+                    <div class="favoritecount">
+                    </div>
+                  </div>
+                </td>
+                <td class="postcell">
+                  <div>
+                    <div class="post-text" itemprop="description">
+                      <%= @post.content %>
+                    </div>
+                    <div class="post-taglist">
+                      <a href="#" class="post-tag"><%= @post.category %></a>
+                    </div>
+                    <table class="fw">
+                      <tbody>
+                        <tr>
+                          <td class="vt">
+                            <div class="post-menu">
+                              <a href="#" class="short-link" id="link-post-<%= @post.id %>">share</a>
+                              <span class="lsep">|</span>
+                              <a href="/foods/edit/<%= @post.id %>" class="suggest-edit-post">improve this question</a>
+                            </div>
+                          </td>
+                          <td class="post-signature owner">
+                            <div class="user-info">
+                              <div class="user-action-time">
+                                asked <span class="relativetime"># hours ago</span>
+                              </div>
+                              <div class="user-gravatar32">
+                                <a href="#">
+                                  <div>
+                                    <img src="https://www.gravatar.com/avatar/c94a68dc6ae681a3ecfb4cddd0d06e6a?s=32&d=identicon&r=PG&f=1" alt="" width="32" height="32">
+                                  </div>
+                                </a>
+                              </div>
+                              <div class="user-details">
+                                <a href="#"><%= @post.user.username %></a>
+                                <span class="requtation-score">1</span>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="votecell"></td>
+                <td>
+                  <div id="comments-<%= @post.id %>" class="comments dno" data-localized="true">
+                    <table>
+                      <tbody data-remaining-comments-count="0" data-addlink-html="add comment" data-addlink-disabled="true">
+                        <tr>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <a href="#" id="comments-link-<%= @post.id %>" data-rep="50" data-anon="true" class="comments-link disabled-link">add comment</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="answers">
+          <a name="tab-top"></a>
+          <div id="answers-header">
+            <div class="subheader answers-subheader">
+              <h2><%= @post.comments.size %> Answers</h2>
+              <div>
+                <div id="tabs">
+                  <a href="#">active</a>
+                  <a href="#">oldest</a>
+                  <a class="youarehere" href="#">votes</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% @post.comments.each do |comment| %>
+          <a name="<%= comment.id %>"></a>
+          <div id="answer-<%= comment.id %>" class="answer" data-answerid="<%= comment.id %>">
+            <table>
+              <tbody>
+                <tr>
+                  <td class="votecell">
+                    <div class="vote">
+                      <input type="hidden" name="_id_" value="<%= comment.id %>">
+                      <a class="vote-up-off">up vote</a>
+                      <span class="vote-count-post">#</span>
+                      <a class="vote-down-off">down vote</a>
+                    </div>
+                  </td>
+                  <td class="answercell">
+                    <div class="post-text">
+                      <%= comment.content %>
+                    </div>
+                    <table class="fw">
+                      <tbody>
+                        <tr>
+                          <td class="vt">
+                            <div class="post-menu">
+                              <a href="#" class="short-link" id="link-post-<%= comment.id %>">share</a>
+                              <span class="lsep">|</span>
+                              <a href="#" class="suggest-edit-post">improve this answer</a>
+                            </div>
+                          </td>
+                          <td align="right" class="post-signature">
+                            <div class="user-info user-hover">
+                              <div class="user-action-time">
+                                answered <span class="relativetime"># hours ago</span>
+                              </div>
+                              <div class="user-gravatar32">
+                                <a href="#">
+                                  <div class="gravatar-wrapper-32">
+                                    <img src="http://i.stack.imgur.com/Z2NYm.png?s=32&g=1" alt=""> 
+                                  </div>
+                                </a>
+                              </div>
+                              <div class="user-details">
+                                <a href="#"><%= comment.user.username %></a><br>
+                                <span class="reputation-score">#,###</span>
+                                <span>
+                                  <span class="badge1"></span>
+                                  <span class="badgecount">#</span>
+                                </span>
+                                <span>
+                                  <span class="badge2"></span>
+                                  <span class="badgecount">#</span>
+                                </span>
+                                <span>
+                                  <span class="badge3"></span>
+                                  <span class="badgecount">#</span>
+                                </span>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="votecell"></td>
+                  <td>
+                    <div id="comments-<%= comment.id %>" class="comments" data-localized="true">
+                      <table>
+                        <tbody data-remaining-comments-count="0" data-addlink-html="add element" data-addlink-disabled="true">
+                          <tr>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <a id="comments-link-<%= comment.id %>" data-rep="50" data-anon="true" class="comments-link disabled-link">add comment</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div> <!-- end div#answer-id -->
+          <% end %>
+          <a name="new-answer"></a>
+          <form id="post-form" action="/foods/write_comment_complete" method="post" class="post-form">
+            <input type="hidden" id="post-id" name="post_id" value="<%= @post.id %>">
+            <h2 class="space">Your Answer</h2>
+            <div id="post-editor" class="post-editor">
+              <div style="position: relative;">
+                <div class="wmd-container">
+                  <div id="wmd-button-bar" class="wmd-button-bar">
+                    <!-- ul abbreviated -->
+                  </div>
+                  <textarea id="wmd-input" name="comment_content" class="wmd-input" cols="92" rows="15" tabindex="101" data-min-length></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="form-submit cbt">
+              <input id="submit-button" type="submit" value="Post Your Answer" tabindex="110">
+              <a href="#" class="discard-answer dno">discard</a>
+            </div>
+          </form>
+        </div> <!-- end div#answers -->
+      </div> <!-- end div#mainbar -->
+      <div id="sidebar" class="show-votes">
+        <!-- div#sidebar abbreviated -->
+      </div>
+      <div id="feed-link">
+        <!-- div#feed-link abbreviated -->
+      </div>
+    </div>
   </div>
-  <% end %>
-
-  <h2 class="text-center">맛집 정보 보기</h2>
-  <div class="row">
-    <div class="col-md-1">
-    </div>
-    <div class="col-md-5 text-right">
-      <img class="img-rounded" src="<%= @post.image_url(:medium) %>">
-    </div>
-    <div class="col-md-5">
-      <h3>+ <%= @post.title %></h3>
-      <p><span class="label label-warning"><%= @post.category %></span></p>
-      <p><%= @post.content %></p>
-      <p><a href="/foods/edit/<%= @post.id %>">수정</a> | <a href="/foods/delete_complete/<%= @post.id %>">삭제</a> || <a href="/">전체 리스트 가기</a></p>
-      <hr />
-      <% @post.comments.each do |comment| %>
-      <p><strong><%= comment.user.username %></strong> <%= comment.content %> | <a href="/foods/delete_comment_complete/<%= comment.id %>">삭제</a></p>
-      <% end %>
-      <form class="text-left" action="/foods/write_comment_complete" method="post">
-        <input type="hidden" name="post_id" value="<%= @post.id %>">
-        <% if !@comment_writer.nil? %>
-        <p><strong><%= @comment_writer.username %></strong> <input type="text" name="comment_content" placeholder="댓글 내용을 입력하세요."> <input type="submit" value="달기"></p>
-        <% end %>
-      </form>
-    </div>
-    <div class="col-md-1">
-    </div>
-  </div>
-</div>
+</div> <!-- end div.container -->
