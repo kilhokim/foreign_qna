@@ -10,10 +10,15 @@
     <div class="topbar-links">
       <div class="links-container">
         <span class="topbar-menu-links">
-          <a href="#" class="login-link" wrc_done="true">sign up</a>
+          <% if session[:user_id].nil? %>
+          <a href="/users/signup" class="login-link" wrc_done="true">sign up</a>
           &nbsp;
-          <a href="#" class="login-link" wrc_done="true">log in</a>
+          <a href="/users/login" class="login-link" wrc_done="true">log in</a>
           &nbsp;
+          <% else %>
+          <a class="login-link"><b><%= User.find(session[:user_id]).username %></b></a>
+          <a href="/users/logout_complete" class="login-link">log out</a>
+          <% end %>
           <a href="#">tour</a>
           <a href="#" class="icon-help js-help-button">help <span class="triangle"></span></a>
           <div class="topbar-dialog help-dialog js-help-dialog dno">
