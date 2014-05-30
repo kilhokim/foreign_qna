@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20140302040601) do
     t.integer  "user_id"
     t.integer  "post_id"
     t.string   "content"
+    t.integer  "votes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

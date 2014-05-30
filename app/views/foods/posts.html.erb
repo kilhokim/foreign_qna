@@ -5,10 +5,57 @@
   </div>
   <% end %>
 
-  <div class="well text-center">
-    <h3>Welcome to the SNU Q&A Forum!</h3>
-    <p>Please feel free to ask anything about SNU life.</p>
-  </div>
+  <div id="header" class="headeranon">
+    <br class="cbt">
+    <div id="hlogo">
+      <a href="/" style="background-image: url('/assets/img01_mark_ab0102.gif');">SNU</a>
+    </div>
+    <div id="hmenus">
+      <div class="nav mainnavs mainnavsanon">
+        <ul>
+          <li>
+            <a id="nav-class" href="#">Class</a>
+          </li>
+          <li>
+            <a id="nav-grade" href="#">Grades</a>
+          </li>
+          <li>
+            <a id="nav-activity" href="#">Activities</a>
+          </li>
+        </ul>
+      </div> <!-- end div.nav mainnavs mainnavsanon -->
+      <div class="nav askquestion">
+        <ul>
+          <li>
+            <a id="nav-askquestion" href="/foods/write">Ask Question</a>
+          </li>
+        </ul>
+      </div> <!-- end div.nav askquestion -->
+    </div> <!-- end hmenus -->
+  </div> <!-- end div#header -->
 
-  <%= render :partial => "foods/posts" %>
+  <div id="content">
+    <div id="herobox">
+      <div id="hero-content">
+        <div id="close">
+          <a title="click to minimize">_</a>
+        </div> <!-- end div#close -->
+        <div id="blurb">
+          Welcome to the SNU Q&A forum. Please feel free to ask anything about SNU life.
+          <br><br>
+          <a href="#" id="tell-me-more" class="button">Take the 2-minute tour</a>
+        </div> <!-- end div#blurb -->
+        <div id="desc">
+          <b>Here's how it works:</b>
+          <ol id="hiw">
+            <li id="q">Anybody can ask a question</li>
+            <li id="an">Anybody can answer</li>
+            <li id="b">The best answers are voted up and rise to the top</li>
+          </ol>
+        </div> <!-- end div#desc -->
+        <div style="clear: both;"></div>
+      </div> <!-- end div#hero-content -->
+    </div> <!-- end div#herobox -->
+    <%= render :partial => "foods/posts" %>
+  </div> <!-- end div#content -->
 </div>

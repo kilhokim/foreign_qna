@@ -6,6 +6,7 @@ class FoodsController < ApplicationController
 		@posts = Post.all
   end
 
+  # ------- Unused action
   def posts_category
     case params[:category]
     when "korean"
@@ -19,6 +20,7 @@ class FoodsController < ApplicationController
     end
     @posts = Post.where(category: @category)
   end
+  # ------- end of unused action
 
   def show
 		@post = Post.find(params[:id])
@@ -34,7 +36,8 @@ class FoodsController < ApplicationController
     post.category = params[:post_category]
     post.title = params[:post_title]
     post.content = params[:post_content]
-		post.image = params[:image]
+    post.views = 0
+    post.votes = 0
     if post.save
       flash[:alert] = "저장되었습니다."
       redirect_to "/foods/show/#{post.id}"
@@ -57,6 +60,8 @@ class FoodsController < ApplicationController
     post.category = params[:post_category]
     post.title = params[:post_title]
     post.content = params[:post_content]
+    post.views = 0
+    post.votes = 0
     if post.save
       flash[:alert] = "수정되었습니다."
       redirect_to "/foods/show/#{post.id}"
@@ -83,6 +88,7 @@ class FoodsController < ApplicationController
 		comment.user_id = session[:user_id]
     comment.post_id = params[:post_id]
     comment.content = params[:comment_content]
+    comment.votes = 0
     comment.save
 
     flash[:alert] = "새 댓글을 달았습니다."

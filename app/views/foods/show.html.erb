@@ -1,4 +1,10 @@
 <div class="container">
+  <% if !flash[:alert].nil? %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+  <% end %>
+
   <div id="content">
     <div itemscope itemtype="http://schema.org/Article">
       <link itemprop="image" href="//cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
@@ -119,7 +125,7 @@
                     <div class="vote">
                       <input type="hidden" name="_id_" value="<%= comment.id %>">
                       <a class="vote-up-off">up vote</a>
-                      <span class="vote-count-post">#</span>
+                      <span class="vote-count-post"><%= comment.votes %></span>
                       <a class="vote-down-off">down vote</a>
                     </div>
                   </td>

@@ -5,28 +5,114 @@
   </div>
   <% end %>
 
-  <div class="row">
-    <div class="col-md-4">
+  <div id="header" class="headeranon">
+    <br class="cbt">
+    <div id="hlogo">
+      <a href="/" style="background-image: url('/assets/img01_mark_ab0102.gif');">SNU</a>
     </div>
-    <div class="col-md-4 text-center">
-      <h3 class="form-heading">맛집 추가하기</h3>
+    <div id="hmenus">
+      <div class="nav mainnavs mainnavsanon">
+        <ul>
+          <li>
+            <a id="nav-class" href="#">Class</a>
+          </li>
+          <li>
+            <a id="nav-grade" href="#">Grades</a>
+          </li>
+          <li>
+            <a id="nav-activity" href="#">Activities</a>
+          </li>
+        </ul>
+      </div> <!-- end div.nav mainnavs mainnavsanon -->
+      <div class="nav askquestion" style="display: none">
+        <ul>
+          <li>
+            <a id="nav-askquestion" href="/foods/write">Ask Question</a>
+          </li>
+        </ul>
+      </div> <!-- end div.nav askquestion -->
+    </div> <!-- end hmenus -->
+  </div> <!-- end div#header -->
 
-      <form action="/foods/write_complete" method="post" enctype="multipart/form-data">
-        <p>+ 분류
-        <select name="post_category">
-          <option value="한식">한식</option>
-          <option value="일식">일식</option>
-          <option value="중식">중식</option>
-          <option value="양식">양식</option>
-        </select></p>
-        <p><input class="form-input" type="text" name="post_title" placeholder="제목을 입력하세요."></p>
-        <p><textarea class="form-textarea" name="post_content" placeholder="내용을 입력하세요."></textarea></p>
-        <p>+ 사진 업로드</p>
-        <p><input type="file" name="image"></p>
-        <input class="btn btn-lg btn-block" type="submit" value="추가하기">
-      </form>
-    </div>
-    <div class="col-md-4">
-    </div>
-  </div>
+  <div id="content">
+    <div id="mainbar" class="ask-mainbar">
+      <form id="post-form" class="post-form" action="/foods/write_complete" method="post">
+        <input type="hidden" name="qualityBanWarningShown" value="False">
+        <div id="question-form">
+          <div style="position: relative;">
+            <div class="form-item ask-title">
+              <table class="ask-title-table">
+                <tbody>
+                  <tr>
+                    <td class="ask-title-cell-key">
+                      <label for="title">Title</label>
+                    </td>
+                    <td class="ask-title-cell-value">
+                      <input type="text" maxlength="300" tabindex="100" class="actual-edit-overlay" data-min-length="15" data-max-length="150" autocomplete="off" style="opacity: 1; position: absolute; color: black; -webkit-text-fill-color: black; width: 610px; height: 15px; line-height: normal; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; text-align: start; border: 1px solid rgb(153, 153, 153); background-color: white; height: 23px;" disabled="disabled">
+                      <input id="title" name="post_title" type="text" maxlength="300" tabindex="100" class="ask-title-field edit-field-overlayed" data-min-length="15" data-max-length="150" autocomplete="off" style="opacity: 0.4; z-index: 1; position: relative;">
+                      <span class="edit-field-overlay">What's your question? Be specific.</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table> <!-- end table.ask-title-table -->
+              <div id="question-suggestions"></div>
+            </div> <!-- end div.form-item ask-title -->
+          </div> 
+          <div id="post-editor" class="post-editor">
+            <div style="position: relative;">
+              <div class="wmd-container">
+                <textarea id="wmd-input" class="wmd-input processed" name="post_content" cols="92" rows="15" tabindex="101" data-min-length placeholder="Ask something..."></textarea>
+                <div class="gripple" style="margin-right: 0px;"></div>
+              </div> <!-- end div.wmd-container -->
+            </div>
+            <div id="wmd-preview" class="wmd-preview"></div>
+            <div class="edit-block">
+              <!-- edit here if it's for editing posts -->
+            </div> <!-- end div.edit-block -->
+          </div> <!-- end div#post-editor -->
+          <div style="position: relative;">
+            <div style="position: relative;">
+              <div class="form-item">
+                <select name="post_category">
+                  <option value="Class">Class</option>
+                  <option value="Grades">Grades</option>
+                  <option value="Activities">Activities</option>
+                </select>
+                <label>Tags</label>
+                <input id="tagnames" name="tagnames" type="text" size="60" value tabindex="103" style="display: none">
+                <div class="actual-edit-overlay" style="width: 666px; height: 27px; opacity: 1; position: absolute; color: black; -webkit-text-fill-color: black; line-height: 27px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; text-align: start; border: 1px solid rgb(153, 153, 153); background-color: white;" disabled="disabled">&nbsp;at least one tag, max 5 tags
+                </div> <!-- end div.actual-edit-overlay -->
+                <div class="tag-editor edit-field-overlayed" style="width: 666px; height: 27px; opacity: 0.4; z-index: 1; position: relative;"><span></span><input type="text" tabindex="103" style="width: 658px;"><span></span>
+                </div> <!-- end div.tag-editor edit-field-overlayed -->
+                <span class="edit-field-overlay">at least one tag, max 5 tags</span>
+              </div> <!-- end div.form-item -->
+            </div>
+          </div>
+          <div id="question-only-section">
+            <div class="form-submit cbt">
+              <input id="submit-button" type="submit" value="Post Your Question" tabindex="120">
+              <a href="#" class="discard-question dno">discard</a>
+            </div> <!-- end div.form-submit cbt -->
+          </div> <!-- end div#question-only-section -->
+        </div> <!-- end div#question-form -->
+      </form> <!-- end form#post-form -->
+    </div> <!-- end div#mainbar -->
+
+    <div id="sidebar" class="ask-sidebar">
+      <div id="scroller-anchor"></div>
+      <div id="scroller" style="position: relative; width: 270px;">
+        <div class="module newuser sidebar-help" id="how-to-title">
+          <h4>How to Ask</h4>
+          <p><b>Is your question about SNU life?</b></p>
+          <p>We prefer questions that can be <i>answered</i>, not just discussed.</p>
+          <p>Provide details. Share your research.</p>
+          <p>If your question is about this website, <b><a href="#">ask it to administrator</a></b> instead.</p>
+          <p class="ar">
+            <a href="#">visit the help center &gt;&gt;</a>
+            <a href="#">asking help &gt;&gt;</a>
+          </p>
+        </div> <!-- end div#how-to-title -->
+      </div> <!-- end div#scroller -->
+    </div> <!-- end div#sidebar -->
+  </div> <!-- end div#content -->
 </div>
