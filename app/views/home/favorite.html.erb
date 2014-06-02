@@ -1,0 +1,46 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+ 
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>즐겨찾기</title>
+ <link href="http://my.snu.ac.kr/mysnu/Html/css/cssbasic.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+	var errorMessage = "";
+	if( errorMessage != "null" && errorMessage.length > 0 ) {
+		alert( errorMessage );
+	}
+	function SetMymenu(){
+		var url ="http://my.snu.ac.kr/mysnu/snu/PA090.face";
+		var name ="mymenu";
+		window.open(url,name,"width=600px, height=500px");
+	}
+	function reloadPage(){
+		location.reload();
+	}
+
+</script>
+</head>
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+<ul class="myfav">
+	<li class="myfavtitle"><img src="http://my.snu.ac.kr/mysnu/Html/img/main/myfav_title_en.gif"  alt="" title="" /><span class="myfav_set"><a href ="#pop" onclick="SetMymenu();"><img src="http://my.snu.ac.kr/mysnu/Html/img/main/myfav_set.gif"  alt="Settingtitle="Setting" /></a></span></li>
+	
+	
+	
+	<li>No favorite site has been registered.<br/> Please register your favorite site.</li>
+	
+</ul>
+	<form method="POST" name="menuForm" id="menuForm" action="http://my.snu.ac.kr/mysnu/snu/PA090.face">
+	<input type="hidden" name="m" value="userMenu"http://my.snu.ac.kr/>
+</body>
+</html>

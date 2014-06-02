@@ -1,0 +1,149 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+ 
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>서울대학교::교수(전임)</title>
+	<link href="http://my.snu.ac.kr/mysnu/Html2/css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="http://my.snu.ac.kr/mysnu/Html2/js/jquery-1.7.min.js"></script>
+	<script type="text/javascript" src="http://my.snu.ac.kr/mysnu/Html2/js/main.js"></script>
+ <script language="JavaScript">
+	var helpPop = null;
+	var flagHelp = false;
+	var topMargin,leftMargin;       
+	function updatePop(e) {
+		x = (document.all) ? event.clientX + document.body.scrollLeft : e.pageX;
+		y = (document.all) ? event.clientY + document.body.scrollTop  : e.pageY;
+		if (flagHelp != false){
+			helpPop = document.getElementById('helpLayer');
+			helpPop.style.left = (x + leftMargin) + "px";
+			helpPop.style.top  = (y + topMargin) + "px";
+			helpPop.style.display = "block";
+		}
+	}
+	function popUp(langKnd,width,top,left) {
+		var msg ="";
+		if(langKnd == "ko"){
+			msg = "메인화면의 우측 [행사/이벤트] 또는 정보광장 > 스누이벤트에서 마음에 드는 행사/이벤트의 [I'M GOING] 버튼을 누르면 관심일정에 등록됩니다.";
+		}else if(langKnd == "en"){
+			msg = "Click [Event] in the right side of the front page or click [SNU Events] on the [Information Plaza] menu bar. If you click on the [I’M GOING] button, that event will be registered in your schedule.";
+		}
+		topMargin = top;
+		leftMargin = left;
+		helpPop = document.getElementById('helpLayer');
+		 var content = "<table width="+width+" border=1 cellspacing=0 cellpadding=0><tr>"+
+		"<td style='padding:10px 10px 10px 10px; line-height:18px; word-break:break-all' bgcolor=#F6F4F4>"+msg+"</td></tr></table>";
+		helpPop.innerHTML = content;
+		flagHelp = true;
+		document.onmousemove = updatePop;
+	}
+	function popClose() {
+		helpPop.style.display = "none";
+		flagHelp = false;
+	}
+
+ 
+	function tabDisplay(e){
+		
+		var it1 = document.getElementById("item1");
+		var it2 = document.getElementById("item2");
+		var imgs = document.getElementsByTagName("img");
+		
+		if(e=='1'){
+			it1.style.display="block";
+			it2.style.display="none";
+			imgs[0].src="http://my.snu.ac.kr/mysnu/Html2/images/fac/tabtiltle01_on_en.gif";
+			imgs[1].src="http://my.snu.ac.kr/mysnu/Html2/images/fac/tabtiltle03_off_en.gif";
+		}else if(e=='2'){
+			it1.style.display="none";
+			it2.style.display="block";
+			imgs[0].src="http://my.snu.ac.kr/mysnu/Html2/images/fac/tabtiltle01_off_en.gif";
+			imgs[1].src="http://my.snu.ac.kr/mysnu/Html2/images/fac/tabtiltle03_on_en.gif"; 
+		} 
+	}
+
+	</script>
+</head>
+<body>
+    <div id="centerArea">
+        <div id="inform" class="inform m1">
+            <ul>
+                <li class="m1"><a href="#" onClick="javascript:tabDisplay(1);"><img src="http://my.snu.ac.kr/mysnu/Html2/images/fac/tabtiltle01_on_en.gif" alt="Mail" /></a>
+                	<div id="item1" style="display:none;">
+	                    <ul>
+	                    	 
+							
+								
+								 
+									<li>
+					                   <span class="title"><a href="http://mail.snu.ac.kr/mail/mainframe?mUid=362389492&amp;fUid=225036&amp;type=view" target="_blank">[소식]여성지도자 초청강연: 권태선(허핑턴포스트 코리아 대표이사) 29일 목 4시</a></span>
+					                   <span class="time">2014.05.27</span>
+					               </li>
+								 
+									<li>
+					                   <span class="title"><a href="http://mail.snu.ac.kr/mail/mainframe?mUid=362322671&amp;fUid=225036&amp;type=view" target="_blank">[기타][영화] 협동조합설립 실화를 바탕으로 한 영화 &#039;위캔두댓&#039; 사전등록 선착순 30명!!</a></span>
+					                   <span class="time">2014.05.27</span>
+					               </li>
+								 
+									<li>
+					                   <span class="title"><a href="http://mail.snu.ac.kr/mail/mainframe?mUid=362225610&amp;fUid=225036&amp;type=view" target="_blank">[기타]&#039;스누인들의 리얼톡&#039; - 대인관계 향상 프로그램</a></span>
+					                   <span class="time">2014.05.27</span>
+					               </li>
+								 
+									<li>
+					                   <span class="title"><a href="http://mail.snu.ac.kr/mail/mainframe?mUid=362160888&amp;fUid=225036&amp;type=view" target="_blank">[소식]2014-1 SNU 필하모닉오케스트라 정기연주회</a></span>
+					                   <span class="time">2014.05.27</span>
+					               </li>
+								 
+									<li>
+					                   <span class="title"><a href="http://mail.snu.ac.kr/mail/mainframe?mUid=362085324&amp;fUid=225036&amp;type=view" target="_blank">[소식]제6회 소통과 공감 행사 안내</a></span>
+					                   <span class="time">2014.05.27</span>
+					               </li>
+								 
+									<li>
+					                   <span class="title"><a href="http://mail.snu.ac.kr/mail/mainframe?mUid=361943842&amp;fUid=225036&amp;type=view" target="_blank">[소식]SNUON 열린강좌 마지막 수강 이벤트! 베스트 후기 작성하면 푸짐한 선물을 드려요!</a></span>
+					                   <span class="time">2014.05.27</span>
+					               </li>
+								 
+									<li>
+					                   <span class="title"><a href="http://mail.snu.ac.kr/mail/mainframe?mUid=361868773&amp;fUid=225036&amp;type=view" target="_blank">[교육]&#039;감정과 인지 능력을 고려한 의사 결정 트레이닝 프로그램 시뮬레이션 디자인&#039; 초청 강연</a></span>
+					                   <span class="time">2014.05.27</span>
+					               </li>
+								
+							
+	                    </ul>
+                    </div>
+                </li>
+               	<li class="m2"><a href="#" onClick="javascript:tabDisplay(2);" onmouseover="popUp('en',240,30,-260)"; onmouseout="popClose();" style='cursor:help'><img src="http://my.snu.ac.kr/mysnu/Html2/images/fac/tabtiltle03_off_en.gif" alt="MySchedule" /></a>
+               		<div id="item2">
+	               		<ul>
+	                    	 
+							
+								
+									<li>You haven’t yet registered any events.</li>
+									<li>Add events which you are interested on the [SNU EVENT] menu.</li>
+								
+								
+								
+	                    </ul>
+	                </div>  
+	                <div id="helpLayer" style="display:none; position:absolute"></div>  
+               	</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+

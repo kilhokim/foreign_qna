@@ -1,0 +1,209 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Cache-Control" content="No-Cache" />
+	<meta http-equiv="Pragma" content="No-Cache" />
+	<meta name="robots" content="NOINDEX" />
+
+	<title>배너(banner)</title>
+	<link href="http://my.snu.ac.kr/mysnu/Html2/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="http://my.snu.ac.kr/mysnu/Html/css/Core_banner_bg.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+<!--
+	var mainbanner_which = 0;
+	var mainbanner_timer = [];
+	var action = 'f';
+	var main_totalSize = 7;
+
+	function mainbanner_forward()
+	{
+	  mainbanner_which++;
+	  if (mainbanner_which > main_totalSize-1 || mainbanner_which < 0) mainbanner_which = 0;
+	  for (var i=0;i<main_totalSize;i++) {
+		  var fld = document.getElementById("mainbanner_"+i);
+		  fld.style.display = (i == mainbanner_which) ? 'block' : 'none';
+	  }
+	}
+
+	function mainbanner_backward()
+	{
+	  mainbanner_which--;
+	  if (mainbanner_which < 0) mainbanner_which = main_totalSize-1;
+	  for (var i=0;i<main_totalSize;i++) {
+		  var fld = document.getElementById("mainbanner_"+i);
+		  fld.style.display = (i == mainbanner_which) ? 'block' : 'none';
+	  }
+	}
+
+	function mainbanner_Stopdisplay() {
+	  clearInterval(mainbanner_timer);
+	}
+
+	function mainbanner_Startdisplay(act) {
+	  if (act == 'f')
+	  {
+		  action = 'f'
+		  mainbanner_Stopdisplay();
+		  mainbanner_timer = setInterval('mainbanner_forward()',4000);
+	  }
+	  else
+	  {
+		  action = 'b'
+		  mainbanner_Stopdisplay();
+		  mainbanner_timer = setInterval('mainbanner_backward()',4000);
+	  }
+	}
+
+	function cmainbanner_forward(){
+	  if (action == 'b')
+	  {
+		  action = 'f'
+	  }
+	  mainbanner_forward();
+	  mainbanner_Stopdisplay();
+	  mainbanner_Startdisplay('f');
+	}
+
+	function cmainbanner_backward()	{
+	  if (action == 'f')
+	  {
+		  action = 'b';
+	  }
+	  mainbanner_backward();
+	  mainbanner_Stopdisplay();
+	  mainbanner_Startdisplay('b');
+	}
+	mainbanner_Startdisplay('f');
+
+	//배너리스트 호출
+	function PopBanner_List(){
+		var PbUrl = "http://my.snu.ac.kr/mysnu/snu/SN050.face";
+		var PbStatus="toolbar=no,status=no,scrollbars=yes,resizable=yes";
+
+		
+		var top = 0;
+		var left = 0;
+		var w_width = "860px"; 	//창 넓이
+		var w_height = "350px"; 	//창 높이
+		var option;
+		if(left == 0){
+			var x= screen.width/2 - w_width/2; //화면중앙으로위치
+			left = x;
+		}
+		if(top == 0){
+			var y= screen.height/2 - w_height/2;
+			top = y;
+		}
+				
+		
+		PbStatus = "top="+top+",left="+left+",width="+w_width+",height="+w_height+","+PbStatus;
+		
+		
+		window.open(PbUrl, "_blank", PbStatus);		
+
+	}
+
+	//리스트에서 배너 추가 신청
+	function banner_add(){
+		top.location.href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO030/SB020/SB020DTB.page";
+	}
+//-->
+</script>
+</head>
+<body>
+<div id="rightArea">
+	<div class="bannerZone">
+			
+	
+		
+			<ul id="mainbanner_0">
+			<li style="padding:8px 0 0 0;">
+			<a href="http://snu.humanrights.ac.kr/" target="_blank" title="SNU Online Human Rights Education System Education for Prevention of Sexual Abuse and Prostitution ">
+			<img src='http://my.snu.ac.kr/mysnu/pic/snuEvent/bannerCustom/201309231379920912034.jpg' style="width:245px; height:92px;" /></a>
+			</li>
+			</ul>
+		
+			
+	
+		
+			<ul id="mainbanner_1">
+			<li style="padding:8px 0 0 0;">
+			<a href="http://health4u.snu.ac.kr/xaAdmin/login/login.jsp " target="_blank" title="명상 프로그램">
+			<img src='http://my.snu.ac.kr/mysnu/pic/snuEvent/bannerCustom/201405071399443158385.png' style="width:245px; height:92px;" /></a>
+			</li>
+			</ul>
+		
+			
+	
+		
+		
+			<ul id="mainbanner_2">
+				<li style="padding:8px 0 0 0;"><a href="http://my.snu.ac.kr" target="_blank" title="4th Installment of 2014. Spring Semester Tuition Fee Payment"><div class="type02"id="roll_banner"><div><dl><dt>2014학년도 1학기 등록금 분납 4차[최종] 납부 안내</dt><dd class="place">사무국 재무과</dd><dd class="period">2014. 5. 28 ~ 2014. 5. 30</dd></dl></div></div></a></li>
+			</ul>
+			
+	
+		
+			<ul id="mainbanner_3">
+			<li style="padding:8px 0 0 0;">
+			<a href="http://snuon.snu.ac.kr/mod/ubboard/article.php?id=1&bwid=988" target="_blank" title="SNUON 베스트후기 이벤트">
+			<img src='http://my.snu.ac.kr/mysnu/pic/snuEvent/bannerCustom/201405151400136331188.jpg' style="width:245px; height:92px;" /></a>
+			</li>
+			</ul>
+		
+			
+	
+		
+			<ul id="mainbanner_4">
+			<li style="padding:8px 0 0 0;">
+			<a href="https://biomed.snu.ac.kr/contents/board/?doc=bbs/gnuboard.php&bo_table=program_notice&sselect=&stext=&ssort=&sorder=&wr_id=58&page=1" target="_blank" title="제14기 학생인턴연구원 모집안내">
+			<img src='http://my.snu.ac.kr/mysnu/pic/snuEvent/bannerCustom/201405191400482701903.jpg' style="width:245px; height:92px;" /></a>
+			</li>
+			</ul>
+		
+			
+	
+		
+			<ul id="mainbanner_5">
+			<li style="padding:8px 0 0 0;">
+			<a href="http://korinst.snu.ac.kr/" target="_blank" title="Korean Language Education in the Multicultural Age">
+			<img src='http://my.snu.ac.kr/mysnu/pic/snuEvent/bannerCustom/201405131399945308784.jpg' style="width:245px; height:92px;" /></a>
+			</li>
+			</ul>
+		
+			
+	
+		
+			<ul id="mainbanner_6">
+			<li style="padding:8px 0 0 0;">
+			<a href="http://ppm.snu.ac.kr" target="_blank" title="2nd SNU Family Choral Festival">
+			<img src='http://my.snu.ac.kr/mysnu/pic/snuEvent/bannerCustom/201405181400411452997.jpg' style="width:245px; height:92px;" /></a>
+			</li>
+			</ul>
+		
+			
+	
+		<ul class="bannerBtn">
+			<li><a href="javascript:cmainbanner_backward()" onmouseover="mainbanner_Stopdisplay();" onmouseout="mainbanner_Startdisplay(action);" onfocus="mainbanner_Stopdisplay();" onblur="mainbanner_Startdisplay(action);">
+				<img src="http://my.snu.ac.kr/mysnu/Html2/images/common/banner_prev.png" alt="이전" title="이전" /></a></li>
+			<li><a href="javascript:PopBanner_List()" onfocus="mainbanner_Stopdisplay();">
+				<img src="http://my.snu.ac.kr/mysnu/Html2/images/common/banner_stop.png" alt="정지" title="정지" /></a></li>
+			<li><a href="javascript:cmainbanner_forward()" onmouseover="mainbanner_Stopdisplay();" onmouseout="mainbanner_Startdisplay(action);" onfocus="mainbanner_Stopdisplay();" onblur="mainbanner_Startdisplay(action);">
+				<img src="http://my.snu.ac.kr/mysnu/Html2/images/common/banner_next.png" alt="다음" title="다음" /></a></li>
+		</ul>
+	</div>
+</div>
+</body>
+
+
+</html>
+

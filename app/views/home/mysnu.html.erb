@@ -1,0 +1,1145 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!--portlet:defineObjects/-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <!-- <title>01 [영문] 학생그룹 메인페이지 (학생/대학원생/휴학생 공통)</title> -->
+  <title>서울대학교 포털</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8"http://my.snu.ac.kr/>
+    <meta http-equiv="Content-style-type" content="text/css"http://my.snu.ac.kr/>   
+    <meta name="version" content="3.2.2"http://my.snu.ac.kr/>
+    <meta name="keywords" content="" />
+    <meta name="description" content="01 [영문] 학생그룹 메인페이지 (학생/대학원생/휴학생 공통)"http://my.snu.ac.kr/>
+
+  
+
+  <link href="http://my.snu.ac.kr/mysnu/Html/css/ecssbasic.css" rel="stylesheet" type="text/css" />
+
+
+  <script type="text/javascript" src="http://my.snu.ac.kr/mysnu/Html/js/jquery-1.7.min.js"></script>
+  <script type="text/javascript" src="http://my.snu.ac.kr/mysnu/Html/js/vrBar.js"></script>
+
+  <script type="text/javascript" src="http://my.snu.ac.kr/mysnu/javascript/common_new.js"></script>
+  <script type="text/javascript" src="http://my.snu.ac.kr/mysnu/javascript/portal_new.js"></script>
+  <script type="text/javascript" src="http://my.snu.ac.kr/mysnu/javascript/utility.js"></script>
+  <script type="text/javascript" src="http://my.snu.ac.kr/mysnu/javascript/validator.js"></script>
+  
+  <script type="text/javascript" src="http://my.snu.ac.kr/mysnu/face/javascript/portlet.js"></script>
+  <script type="text/javascript" src="http://my.snu.ac.kr/mysnu/face/javascript/menuSelector.js"></script>
+  
+  <link type="text/css" href="http://my.snu.ac.kr/mysnu/decorations/layout/css/jquery/base/jquery.ui.all.css" rel="stylesheet" />
+  <script type="text/javascript" src="http://my.snu.ac.kr/mysnu/javascript/jquery/jquery-1.4.2.js"></script>
+  <script type="text/javascript" src="http://my.snu.ac.kr/mysnu/javascript/jquery/jquery-ui-1.8.2.custom.min.js"></script>
+  <script type="text/javascript" src="http://my.snu.ac.kr/mysnu/javascript/message/userMessageResourece_en.js"></script>
+  <script type="text/javascript" src="http://my.snu.ac.kr/mysnu/javascript/jquery/ui/i18n/jquery.ui.datepicker-en.js"></script>
+  
+  <script type="text/javascript" src="http://my.snu.ac.kr/mysnu/javascript/tree/dhtmlxcommon.js"></script>
+  <script type="text/javascript" src="http://my.snu.ac.kr/mysnu/javascript/tree/dhtmlXTree.js"></script>
+  <script type="text/javascript" src="http://my.snu.ac.kr/mysnu/javascript/tree/dhtmlXTreeMenu.js"></script>
+  <script type="text/javascript" src="http://my.snu.ac.kr/mysnu/decorations/layout/scripts/EnviewMenu.js"></script>
+
+  <script type="text/javascript">
+
+    var iframeObj = null;
+
+    sessionTimeOutID = setTimeout("delay()",180000);
+    function delay(){
+      loadXMLDoc("http://my.snu.ac.kr/mysnu/statics/session.jsp");
+      clearTimeout(sessionTimeOutID);
+      sessionTimeOutID= setTimeout("delay()",180000);
+    }
+    
+    function loadXMLDoc(doc){
+      if (window.XMLHttpRequest){
+        xhttp=new XMLHttpRequest();
+      }else{
+        xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xhttp.open("GET",doc,false);
+      xhttp.send();
+      return xhttp.responseXML;
+    }
+
+
+    function updateIFrame(height) {
+      
+      var iframe;
+      if(iframeObj == null){
+        iframe = document.getElementById( 'rightFrame' );
+      }
+      
+      if(iframeObj != null) {
+        iframe = document.getElementById(iframeObj.id);
+      } 
+      
+//      if(height != null) {
+//        iframe.setAttribute('height', height);
+//      }
+                          
+    }
+
+    function iframe_autoresize(arg) {
+      
+      arg.height = 0;
+      
+        var innerBody = arg.contentWindow.document.body;
+        var innerHeight = innerBody.scrollHeight + (innerBody.offsetHeight - innerBody.clientHeight);
+        
+        arg.height = innerHeight;
+
+/*        iframeObj = arg;
+      arg.height = arg.contentWindow.document.body.scrollHeight;
+ */
+
+
+
+
+    }
+    
+    function getTickerMessage() {
+      return tickerMessage;
+    }
+    
+    function changeUser(obj) {
+      var userId = obj.options[obj.selectedIndex].value;
+      location.href = "${request.contextPath}/login/changeuser?username=" + userId;
+    }
+
+
+
+    function setCookie( name, value, expiredays ){ 
+      var todayDate = new Date(); 
+      todayDate.setDate( todayDate.getDate() + expiredays ); 
+      document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";" 
+    } 
+
+
+    function getCookie( name )
+    {
+      var nameOfCookie = name + "=";
+      var x = 0;
+      while ( x <= document.cookie.length )
+      {
+        var y = (x+nameOfCookie.length);
+        if ( document.cookie.substring( x, y ) == nameOfCookie )
+        {
+          if ( (endOfCookie=document.cookie.indexOf( ";", y )) == -1 )
+            endOfCookie = document.cookie.length;
+          return unescape( document.cookie.substring( y, endOfCookie ) );
+        }
+        x = document.cookie.indexOf( " ", x ) + 1;
+        if ( x == 0 )
+          break;
+      }
+      return "";
+    }
+
+
+    function promoBanner(flag)
+    {
+
+      if ( getCookie( "PROMO" ) != "no" )
+      {
+        setCookie("PROMO", "no" , 1);
+      }
+
+      var promo = document.getElementById("topArea");
+      var promoBtn = document.getElementById("promoBtn");
+
+      if(promo.style.display == "none") {
+        promo.style.display = "block";
+        if(flag != "close") {
+          promoBtn.src="http://my.snu.ac.kr/mysnu/Html/img/top/btn_top_close.gif";
+        } else if (flag == "close") {
+          promoBtn.style.display="none";
+          promo.style.display = "none";
+        }
+
+      } else { 
+        promo.style.display = "none";
+        if(flag != "close") {
+          promoBtn.src="http://my.snu.ac.kr/mysnu/Html/img/top/btn_top_open.gif";
+        } else if (flag == "close") {
+          promoBtn.style.display="none";
+        }
+      }
+    }
+    
+  function viewMenu() {
+      var menu = document.getElementById("viewsub");
+      var display = menu.style.display;
+      if(display == "block") {
+        menu.style.display = "none";
+      } else {
+        menu.style.display = "block";
+      }
+    }
+  
+    function viewService() {
+      var menu = document.getElementById("category");
+      var catebtn = document.getElementById("catebtn");
+      var display = menu.style.display;
+      if(display == "block") {
+        menu.style.display = "none";
+        catebtn.src="http://my.snu.ac.kr/mysnu/Html/img/main/cate_show_ko.gif";
+      } else {
+        menu.style.display = "block";
+        catebtn.src="http://my.snu.ac.kr/mysnu/Html/img/main/cate_hide_ko.gif";
+      }
+    }
+
+    function quickMenuOpen() {
+      var quickmenu = document.getElementById("quicksub");
+      quickmenu.style.display = "block";
+    }
+    function quickMenuClose() {
+      var quickmenu = document.getElementById("quicksub");
+      quickmenu.style.display = "none";
+    }
+
+    // Top Menu (LNB)
+    function initNavigationKo(seq) {
+      nav = document.getElementById("gnbmenu");
+      nav.menu = new Array();
+      nav.current = null;
+      nav.menuseq = 0;
+      navLen = nav.childNodes.length;
+      
+      allA = nav.getElementsByTagName("a")
+
+      for(k = 0; k < allA.length; k++) {
+        allA.item(k).onmouseover = allA.item(k).onfocus = function () {
+          nav.isOver = true;
+        }
+        allA.item(k).onmouseout = allA.item(k).onblur = function () {
+          nav.isOver = false;
+          setTimeout(function () {
+            if (nav.isOver == false) {
+              if (nav.menu[seq])
+                nav.menu[seq].onmouseover();
+              else if(nav.current) {
+                menuImg = nav.current.childNodes.item(0);
+                menuImg.className="";
+                menuImg.src = menuImg.src.replace("on.gif", ".gif");
+                document.getElementById("smenu0"+menuImg.id).style.display="none";
+                nav.current = null;
+              }
+            }
+          }, 10000);
+        }
+      }
+
+      for (i = 0; i < navLen; i++) {
+        navItem = nav.childNodes.item(i);
+        if (navItem.tagName != "LI" || navItem.className== "viewmenu" )
+          continue;
+
+        navAnchor = navItem.getElementsByTagName("a").item(0);
+        navAnchor.submenu = navItem.getElementsByTagName("ul").item(0);
+        
+        navAnchor.onmouseover = navAnchor.onfocus = function () {
+          if (nav.current) {
+            menuImg = nav.current.childNodes.item(0);
+            menuImg.className="";
+            menuImg.src = menuImg.src.replace("on.gif", ".gif");
+            document.getElementById("smenu0"+menuImg.id).style.display="none";
+            nav.current = null;
+          }
+          if (nav.current != this) {
+            menuImg = this.childNodes.item(0);
+            menuImg.src = menuImg.src.replace(".gif", "on.gif");
+            document.getElementById("smenu0"+menuImg.id).style.display="block";
+            menuImg.className="on";
+            nav.current = this;
+          }
+          nav.isOver = true;
+        }
+        nav.menuseq++;
+        nav.menu[nav.menuseq] = navAnchor;
+        
+      }
+      if (nav.menu[seq])
+        nav.menu[seq].onmouseover();
+    }
+
+    // Top Menu (LNB)
+    function initNavigationEn(seq) {
+      nav = document.getElementById("gnbmenu");
+      nav.menu = new Array();
+      nav.current = null;
+      nav.menuseq = 0;
+      navLen = nav.childNodes.length;
+      
+      allA = nav.getElementsByTagName("a")
+
+      for(k = 0; k < allA.length; k++) {
+        allA.item(k).onmouseover = allA.item(k).onfocus = function () {
+          nav.isOver = true;
+        }
+        allA.item(k).onmouseout = allA.item(k).onblur = function () {
+          nav.isOver = false;
+          setTimeout(function () {
+            if (nav.isOver == false) {
+              if (nav.menu[seq])
+                nav.menu[seq].onmouseover();
+              else if(nav.current) {
+                menu = nav.current.childNodes.item(0);
+                nav.current.className="";
+                document.getElementById("smenu0"+menu.id).style.display="none";
+                nav.current = null;
+                
+              }
+            }
+          }, 10000);
+        }
+      }
+
+      for (i = 0; i < navLen; i++) {
+        navItem = nav.childNodes.item(i);
+        if (navItem.tagName != "LI" || navItem.className== "viewmenu" )
+          continue;
+
+        navAnchor = navItem;
+        
+        navAnchor.onmouseover = navAnchor.onfocus = function () {
+          if (nav.current) {
+            menu = nav.current.childNodes.item(0);
+            nav.current.className="";
+            document.getElementById("smenu0"+menu.id).style.display="none";
+            nav.current = null;
+          }
+          if (nav.current != this) {
+            menu = this.childNodes.item(0);
+            this.className = "on";      
+            document.getElementById("smenu0"+menu.id).style.display="block";
+            
+            nav.current = this;
+            
+          }
+          nav.isOver = true;
+        }
+        nav.menuseq++;
+        nav.menu[nav.menuseq] = navAnchor;
+      }
+      if (nav.menu[seq])
+        nav.menu[seq].onmouseover();
+    }
+    // 
+
+    function bookmarksite(title,url) {
+       var title="서울대학교 포털 마이스누";
+       var url = "http://mytest.snu.ac.kr/mysnu/";
+       if (window.sidebar) // firefox 
+       window.sidebar.addPanel(title, url, ""); 
+       else if(window.opera && window.print)
+
+       { // opera 
+        var elem = document.createElement('a'); 
+        elem.setAttribute('href',url); 
+        elem.setAttribute('title',title); 
+        elem.setAttribute('rel','sidebar'); 
+        elem.click(); 
+       } 
+
+       else if(document.all) // ie
+       window.external.AddFavorite(url, title);
+    }
+
+
+    function setHome(){ 
+      if(document.all){ 
+        document.body.style.behavior='url(#default#homepage)'; 
+        document.body.setHomepage('http://my.snu.ac.kr/mysnu/'); 
+      } else { 
+        alert("Internet Explorer 이외 브라우저에서는 지원하지 않는 기능입니다. \n브라우저의 북마트 추가 기능을 이용해주세요");       
+      } 
+    } 
+    
+    function openCampusMap_ko() {
+      //window.open('http://www.snu.ac.kr/images/map/main.html','CampusMap','width=1014,height=678,scrollbars=no,menubar=no,resizable=no');
+      window.open('http://www.snu.ac.kr/upload/about/Gwanak_Campusmap_2013_kr.pdf');
+
+    }
+
+
+    
+    function openEmail(name) {
+      window.open('http://my.snu.ac.kr/email.html',name,'width=820,height=900,scrollbars=no,menubar=no,resizable=no');
+    }
+    
+    function openIndividual(name) {
+      window.open('http://ist.snu.ac.kr/ist/popup/footer_popup/individual_popup.jsp',name,'width=1014,height=678,scrollbars=no,menubar=no,resizable=no');
+    }
+
+    function openCampusMap_en() {
+      window.open('http://useoul.edu/images/map/main.html','CampusMap','width=1014,height=678,scrollbars=no,menubar=no,resizable=no');
+
+    }
+
+    function openDeptMap() {
+      window.open('https://shine.snu.ac.kr/com/ssoRedirectAction.action?ssoRedirectUrl=https://shine.snu.ac.kr/public/orgChart.html','DeptMap','width=1014,height=690,scrollbars=no,menubar=no,resizable=no,location=no');
+    }
+
+    function open_sso() {
+      alert("open_sso");
+      window.open('http://my.snu.ac.kr/portal/startsnucs.jsp','DeptMap','width=300,height=100,scrollbars=no,menubar=no,resizable=no');
+
+    }
+    function openShine_ko() { 
+      //window.open('https://sso.snu.ac.kr/snu/module/check_cert?si_redirect_address=https://shine.snu.ac.kr/com/ssoLoginAction.action&lang_knd=ko','shine','menubar=no, toolbar=no, location=no, scrollbars=auto, status=no, resizable=yes');
+      //window.open('https://shine.snu.ac.kr/com/ssoLoginAction.action','shine','menubar=no, toolbar=no, location=no, scrollbars=auto, status=no, resizable=yes, width=1280');
+//      window.open('https://sso.snu.ac.kr/snu/ssologin_cert.jsp?si_redirect_address=https://shine.snu.ac.kr/com/ssoLoginAction.action','shine','menubar=no, toolbar=no, location=no, scrollbars=auto, status=no, resizable=yes, width=1280');
+      window.open('https://sso.snu.ac.kr/snu/module/check_cert?si_redirect_address=https://shine.snu.ac.kr/com/ssoLoginAction.action','shine','menubar=no, toolbar=no, location=no, scrollbars=auto, status=no, resizable=yes, width=1024');
+    }
+
+/* 20140317 keh add start */
+    function openOsos() {
+      window.open('http://osos.snu.ac.kr','osos','menubar=no, toolbar=no, location=no, scrollbars=auto, status=no, resizable=yes, height=960, width=1300');
+    }
+/* 20140317 keh add end */
+    
+    function pc_open(){
+      window.open('http://mysnu.ac.kr/mysnu/statics/reservation.jsp','pc','menubar=no,toolbar=no,location=no,status=no,scrollbars=yes,width=1040,height=820,top=0,left=0');
+      }
+      
+      function pc_open2(){
+      document.frm.UI.value="catharsist";
+      document.frm.MODE.value="UP";     
+      document.frm.submit();
+    }
+
+    function swDown_open(){
+      window.open('?','pclab','menubar=no,toolbar=no,location=no,status=no,scrollbars=yes,width=1040,height=820,top=0,left=0');
+      document.swfrm.submit();
+    }
+
+
+
+    function openGuide(page) {
+      var url = '';
+      if( page == 'style' ) {
+        url = 'http://mysnu.ac.kr/mysnu/Html/site/styleguide/guide/index.html';
+      } else {
+        url = 'http://mysnu.ac.kr/mysnu/Html/site/help/help.html';
+      }
+      window.open(url,'guide','width=990, height=650, menubar=no, toolbar=no, location=no, scrollbars=yes, status=no, resizable=yes');
+      }
+
+    function athleticsOpen (gugun){
+       var url= '';
+       if ( gugun == '1' ){   
+      url= 'http://athletics.snu.ac.kr/prg/snu_0306.php?login_stat=Y';
+      window.open(url,'snu_0306', 'toolbars=no, width=1000, height=500 resizable=yes, scrollbars=yes');
+       }
+       else {
+      url= 'http://147.47.106.78/pgrsys/index.php?login_stat=Y';
+      window.open(url,'dorm_ground', 'toolbars=no, width=1000, height=600 resizable=yes, scrollbars=yes');
+      }       
+    }
+
+    function haksaDayCheck() {
+
+      alert('Data backup is processed as scheduled below in order to be prepared for emergencies and disaster recovery.\n\nDuring the backup users’ access is not available and you will be forcibly logged out even though you logged on before 2:00. So your work can be not stored successfully at this time.\n\n- Backup Schedule: Every week\nTime: Every Sunday at 02:00 ~ 06:00 \n- Unavailable Services : Academic Affairs Administration System and SNU Account Management System.\n Please excuse us for causing you inconvenience.');
+      
+
+
+
+    }
+
+    function initEnview() {
+      var pageInfo = eval({"id": "5738", "path": "http://my.snu.ac.kr/MS010/01MAIN_en", "title": "01 [영문] 학생그룹 메인페이지 (학생/대학원생/휴학생 공통)", "targetUrl": "", "useIframe": "false", "contextPath": "http://my.snu.ac.kr/mysnu", "servletPath": "http://my.snu.ac.kr/portal", "theme": "mysnu", "evalTheme": "null", "themePath": "http://my.snu.ac.kr/decorations/layout/mysnu/", "admContextPath": "null", "layout": "enview-layouts::VelocityThreeColumns" });
+      var decorations = eval( {"layouts": [{"name" : "Four Columns", "value" : "enview-layouts::VelocityFourColumns"} , {"name" : "One Column", "value" : "enview-layouts::VelocityOneColumn"} , {"name" : "Three Columns", "value" : "enview-layouts::VelocityThreeColumns"} , {"name" : "Two Columns", "value" : "enview-layouts::VelocityTwoColumns"} , {"name" : "Two Columns (15%/85%)", "value" : "enview-layouts::VelocityTwoColumnsSmallLeft"} , {"name" : "Two Columns (25%/75%)", "value" : "enview-layouts::VelocityTwoColumns2575"} ],"pages": [{"name" : "admin", "value" : "admin"} , {"name" : "empty", "value" : "empty"} , {"name" : "encafe", "value" : "encafe"} , {"name" : "enview", "value" : "enview"} , {"name" : "grouppage", "value" : "grouppage"} , {"name" : "mypage", "value" : "mypage"} , {"name" : "mypageeasy", "value" : "mypageeasy"} , {"name" : "mysnu", "value" : "mysnu"} , {"name" : "mysnuMin", "value" : "mysnuMin"} , {"name" : "mysnuSub", "value" : "mysnuSub"} , {"name" : "mysnu__", "value" : "mysnu__"} ],"mypages": [{"name" : "mypage", "value" : "mypage"} , {"name" : "mypageeasy", "value" : "mypageeasy"} ]} );
+
+      portalPageInitialize("3.2.4 (M20111230-501)", "false", "2008-11777", pageInfo, decorations, "en");
+
+
+
+      if ( getCookie( "PROMO" ) != "no" )
+      {
+      
+        var promo = document.getElementById("topArea");
+        var promoBtn = document.getElementById("promoBtn");
+        promo.style.display = "block";
+        promoBtn.src="http://my.snu.ac.kr/mysnu/Html/img/top/btn_top_close.gif";
+      }
+    }
+
+    function selectMenu()
+    {
+      //showModalessDialog('http://my.snu.ac.kr//userMenu/getAccessableMenuList.face',300,400);
+      if( aMenuSelector == null ) {
+        // CASE 2 : DHTML 윈도우로 메뉴선택
+        portalPage.getAjax().send("POST", portalPage.getContextPath() + "http://my.snu.ac.kr/userMenu/getAccessableMenuList.face", "tree=false", false, {
+        success: function(data){
+          document.getElementById("MenuSelectDialog").innerHTML = data;
+          aMenuSelector = new MenuSelector(false);
+        }});
+        /*
+        // CASE 3 : DHTML윈도우의 Tree에서 메뉴선택
+        portalPage.getAjax().send("POST", portalPage.getContextPath() + "http://my.snu.ac.kr/userMenu/getAccessableMenuList.face", "tree=true", false, {
+        success: function(data){
+          document.getElementById("MenuSelectDialog").innerHTML = data;
+          aMenuSelector = new MenuSelector(true);
+          aMenuSelector.init();
+        }});
+        */        
+      }
+      aMenuSelector.doShow();
+    }
+
+    function getAction()
+    {
+      return 
+    }
+    
+    function resize()
+    {
+      var menu = document.getElementById("Enview.LeftMenu");
+      menu.style.display = "none";
+    }
+    
+    function print(arg) {
+      eval(arg.name).focus();
+      eval(arg.name).print();
+    }
+    
+    function checkModified() {
+      portalPage.checkModified();
+    }
+    
+    // Attach to the onload event
+    if (window.attachEvent)
+    {
+        window.attachEvent ( "onload", initEnview );
+      window.attachEvent ( "onunload", checkModified );
+    }
+    else if (window.addEventListener )
+    {
+        window.addEventListener ( "load", initEnview, false );
+      window.addEventListener ( "unload", checkModified, false );
+    }
+    else
+    {
+        window.onload = initEnview;
+      window.onunload = checkModified;
+    }
+    
+    function initP(){
+      var nowLo = location.toString();
+      var pageFlag = nowLo.indexOf("MY013");
+      if(pageFlag > -1) document.getElementById("certUl").style.display = "block";
+
+      //window.open('noti_pop.html', 'noti', 'top=250px, left=250px, height=450px, width=745px, location=no, menubar=no, toolbar=no, status=no');
+//      window.open('http://my.snu.ac.kr/mysnu/notice.html', 'noti', 'top=250px, left=250px, height=450px, width=745px, location=no, menubar=no, toolbar=no, status=no');
+    }
+
+    function openQnA_ko(){ 
+      window.open('http://community.snu.ac.kr/bbs/bbs.message.list.screen?bbs_id=558','QnA','menubar=no, toolbar=no, location=no, scrollbars=yes, status=no, resizable=yes, width=800');
+    }
+// 2014.3.21 keh open
+    function openRecommend(){ 
+      window.open('http://community.snu.ac.kr/bbs/bbs.message.list.screen?bbs_id=566','Recommend','menubar=no, toolbar=no, location=no, scrollbars=yes, status=no, resizable=yes, width=800');
+    }
+// 2014.3.21 keh close
+    
+    function openShine_ko_imsi(){
+  
+      var today = new Date();
+      
+      var year =  today.getFullYear();
+      var month =  (today.getMonth() + 1);
+      var day =  today.getDate();
+      
+      var hours = today.getHours();
+      var minutes = today.getMinutes();
+      var seconds = today.getSeconds();
+      
+      var d = new Date(year, month, day, hours, minutes);
+      var d = new Date();
+      
+      var a = "2014-04-29"
+      var b ="21:00"
+      var temp = a.split("-");
+      var temp1 = b.split(":");
+      
+      var insertTime = new Date( Number(temp[0]), Number(temp[1])-1,Number(temp[2]),Number(temp1[0]),Number(temp1[1]));
+      var insertTime2 = new Date( Number(temp[0]), Number(temp[1])-1,Number(temp[2]),Number(temp1[0])+5,Number(temp1[1]));
+      
+      var insertTime3 = new Date( Number(temp[0]), Number(temp[1])-1,Number(temp[2])+1,Number(temp1[0]),Number(temp1[1]));
+      var insertTime4= new Date( Number(temp[0]), Number(temp[1])-1,Number(temp[2])+1,Number(temp1[0])+5,Number(temp1[1]));
+      
+      if(  insertTime < today   &&  today < insertTime2 ){
+      //  alert("수강 신청 기간에는 사용이 불가합니다. ");
+        alert("통합행정시스템 작업으로 인해 서비스가 잠시 중단됩니다.\n        4.29(화) 21:00 ~ 4.30(수) 02:00 ");      
+        return ;
+      }else{
+        window.open('https://sso.snu.ac.kr/snu/module/check_cert?si_redirect_address=https://shine.snu.ac.kr/com/ssoLoginAction.action','shine','menubar=no, toolbar=no, location=no, scrollbars=auto, status=no, resizable=yes, width=1024');
+  
+        }
+
+    }
+
+  </script>
+
+
+  <style>
+
+   div#util_box .utilC{
+    margin:0 0 0 190px;
+    padding:0px;
+    float:left;
+    border:0px solid green;
+   }
+   div#util_box .utilC li{
+    margin:0px 0px 0px 0px;
+    padding:0px 10px 0px 10px;
+    vertical-align:top;  
+    
+   }
+
+   div#util_box .utilB span { 
+    font-size:11px;
+   }
+  </style>
+</head>
+
+<body onload="javascript:initP();">
+<div id="Enview.Portal.IconArea" align="right" class="webpanel" style="display:none;z-index:999;"><span id="portal-page-actions" ></span></div>
+<div id="MenuSelectDialog" class="webpanel" style="display:none;" title="Select MyMenu"></div>  
+
+
+
+
+
+<form id="frm" name="frm" method="POST" target="_blank" action="http://scms.snu.ac.kr/Symtra_Support/PortalCheck.asp">
+   <input id="UI" name="UI" type="hidden"http://my.snu.ac.kr/>
+   <input id="MODE" name="MODE" type="hidden"http://my.snu.ac.kr/>
+</form>
+<!--% if ( currentPath.indexOf("MY") > -1 || isMyPage == true ){%> -->
+
+<!--% }else{%>  -->
+<!--<iframe src="http://my.snu.ac.kr/mysnu/statics/check_pwd.jsp" scrolling='no' frameborder='0' width="0px" height="0px" title=""></iframe>-->
+<!--%}%>  -->
+<div id="container">  
+<div id="content">    
+  <!-- top start -->   
+    <div id="content_top">
+
+
+
+
+
+
+
+      <div id="util_box"> 
+                    <div class="utilA">
+                        <ul>
+                            <li class="noleft"><a href="#bookmark" title="" onclick="bookmarksite();">Set StartPage to mySNU</a></li><!-- 첫메뉴일경우 -->
+                            <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/01MAIN_en">Home</a></li>  
+                        </ul>       
+                    </div> <!-- topmenu --> 
+                   
+          <div class="utilC">
+                        <ul>
+              <li>
+                <form id="promoForm" name="promoForm" method="post" action="">
+                  <a href="javascript:promoBanner();" onFocus="this.blur()">
+                  <img src="http://my.snu.ac.kr/mysnu/Html/img/top/btn_top_open.gif" id="promoBtn" alt="Promotion banner" />
+                  </a>
+                </form>
+              </li>
+                        </ul>       
+                    </div> <!-- topmenu -->
+
+                    
+                    <div class="utilB">
+                        <ul>
+                            <li class="noleft"><span>Kim Kil Ho</span></li>
+              <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO999/MY031">MyPage</a></li>  
+                            <li class="logout"><a href="http://my.snu.ac.kr/mysnu/user/logout.face"  target="_top">Logout</a></li>
+                            <li><a href="#" onclick="openCampusMap_en();">Campus Map</a></li>
+                            <li><a href="http://my.snu.ac.kr/mysnu/user/changeLocale.face?groupKey=SA_gr1&langKnd=ko&destination=/mysnu/portal/"  target="_self">KOREAN</a></li>
+                        </ul>       
+
+                    </div> <!-- topmenu --> 
+            </div> <!-- util_box --> 
+ 
+            <div id="src_box">             
+                        <ul class="topsearch">
+                            <li class="first"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/01MAIN_en"><img src="http://my.snu.ac.kr/mysnu/Html/img/top/logo_en.png"  alt="" title="" /></a></li>
+                             <li class="src_back" style="z-index:1000;">
+                                    <ul>
+                                      
+<!-- 검색 자동완성용 --> 
+<script type="text/javascript" src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/search/dqAutoCompleteCommon.js"></script>
+<script type="text/javascript" src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/search/portalSearch.js"></script>
+<link rel="stylesheet" href="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/search/dqSearch.css" type="text/css" />
+<!-- //검색 자동완성용 -->
+
+                  <form id="searchForm" name="searchForm" method="post" action="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO990.page" onSubmit="javascript:goSearch();return false;">
+                                    <li>
+                    <input name="searchTerm" type="text" id="searchTerm" class="srctext" value="" autocomplete="off" onfocus="return dq_setTextbox('0',event);" onmousedown="dq_setTextbox('1',event);" onkeydown="dq_setTextbox('1',event);"http://my.snu.ac.kr/>
+                    <input type="hidden" name="lang" value="en" />
+                  </li>
+                                    <script type="text/javascript" src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/search/portalAutoComplete.js"></script>
+                                    <div id="dqAuto" onmouseover="dq_setMouseon();" onmouseout="dq_setMouseoff();">
+                                    </div>
+                                     <li class="srcbtn"><a href="javascript:goSearch();">Search</a></li>
+                  </form>
+                  <form id="redirectForm" name="redirectForm" action="http://search.snu.ac.kr/addFunction/redirectSearch.jsp" method="post">
+                  <input type="hidden" name="searchTerm" id="searchTerm" value="http://my.snu.ac.kr/mysnu" />
+                  <input type="hidden" name="searchActionURL" id="searchActionURL" value="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO990.page" />
+                  </form>
+                                    </ul>
+              </li>
+                            <li class="srclink">
+                                    <ul>
+                                    <li><a href="javascript:goRedirectSearch();">OneClick Search</a></li>
+                                    <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO999/MY014.page" target="_self">myScrap</a></li>
+                                    </ul>
+                            </li>
+                        </ul>       
+            </div><!-- src_box -->   
+            <div id="menu_box">
+            
+                        <ul class="gnb">
+                        <li class="gnbwidth">   
+                                <ul class="gnbmenu title" id="gnbmenu">
+
+            <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010.page" target="_self" id="1">Academic Affairs</a></li>
+
+            <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO020.page" target="_blank" id="2">Webmail</a></li>
+
+            <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO050.page" target="_blank" id="3">eTL</a></li>
+
+            <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO030.page" target="_self" id="4">Information Plaza</a></li>
+
+            <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO040.page" target="_self" id="5">SNU Support</a></li>
+
+
+                <li class="viewmenu"><a href="#" onclick="viewMenu();">Show All Menus</a></li>
+                </ul><script type="text/javascript">initNavigationEn(0);</script>
+
+                                
+                        </li>
+            <li class="quickmenu"><a href="#" onmouseover="quickMenuOpen();" onmouseout="quickMenuClose();" />Quick Menu</a></li></li>
+                        </ul>
+                        
+                        
+                        <div id="viewsub" class="viewsub" style="display:none;">  <!--전체보기메뉴 -->
+              <div class="viewsub_line"> 
+                                    
+
+              <ul>
+
+                  <li class="viewsub_title"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010.page" target="_self" id="2">Academic Affairs</a></li>
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010/SB010.page" target="_self" id="1">Tuition</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010/SB030.page" target="_self" id="2">Class/Grade</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010/SB040.page" target="_self" id="3">Scholarship</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010/SB050.page" target="_self" id="4">Change Student Status</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010/SB060.page" target="_self" id="5">Graduation</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010/SB110.page" target="_self" id="6">Course</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010/SB080.page" target="_self" id="7">Camplus Life</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010/SB070.page" target="_self" id="8">Int'I Exchange</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010/SB020.page" target="_self" id="9">Get Certificates</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010/SB100.page" target="_self" id="10">Dormitory</a></li>
+
+
+
+              </ul>
+
+              <ul>
+
+                  <li class="viewsub_title"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO020.page" target="_blank" id="3">Webmail</a></li>
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO020/SB010.page" target="_self" id="1">Compose</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO020/SB020.page" target="_self" id="2">Compose SecureMail</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO020/SB030.page" target="_self" id="3">Return Receipt</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO020/SB080.page" target="_self" id="4">mailbox</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO020/SB060.page" target="_blank" id="5">External POP Access</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO020/SB050.page" target="_self" id="6">Options</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO020/SB040.page" target="_self" id="7">Address Book</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO020/SB070.page" target="_blank" id="8">Help</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO020/SB090.page" target="_self" id="9">Inbox</a></li>
+
+
+
+              </ul>
+
+              <ul>
+
+                  <li class="viewsub_title"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO050.page" target="_blank" id="4">eTL</a></li>
+
+
+              </ul>
+
+              <ul>
+
+                  <li class="viewsub_title"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO030.page" target="_self" id="5">Information Plaza</a></li>
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO030/SB010.page" target="_self" id="1">Bulletin Board</a></li>
+
+
+                  <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO030/SB010/ME010.page" target="_self" id="1">Notice</a></li>
+
+                  <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO030/SB010/ME020.page" target="_self" id="2">FreeBoard</a></li>
+
+                  <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO030/SB010/ME030.page" target="_self" id="3">Events</a></li>
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO030/SB020.page" target="_self" id="2">SNU Events</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO030/SB030.page" target="_self" id="3">Community</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO030/SB040.page" target="_self" id="4">Blog</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO030/SB050.page" target="_self" id="5">SNU Events admin</a></li>
+
+
+
+              </ul>
+
+              <ul>
+
+                  <li class="viewsub_title"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO040.page" target="_self" id="6">SNU Support</a></li>
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO040/SB010.page" target="_self" id="1">IT Service</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO040/SB020.page" target="_self" id="2">Repairs Center</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO040/SB030.page" target="_blank" id="3">S-CARD</a></li>
+
+
+                  <li class="viewsub_cate"><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO040/SB040.page" target="_blank" id="4">Academic Writing Lab</a></li>
+
+
+
+              </ul>
+
+
+
+                            <div class="viewsub_close">
+                                <a href="#" onclick="viewMenu()">Hide All Menus </a>
+                            </div>
+                          </div><!-- // viewsub_line --> 
+
+                        </div><!-- // viewsub --> 
+                        
+                        
+                        <div class="quicksub" id="quicksub" style="display:none;" onmouseover="quickMenuOpen();" onmouseout="quickMenuClose();" > <!--퀵 서브메뉴 -->
+              <ul>
+
+              <li><a href="#link" onclick="javascript:swDown_open()" id="1">SW Download</a></li>
+                <form id="swfrm" name="swfrm" method="POST" target="_blank" action="http://147.47.106.89/sso/login.php">
+                   <input id="userid" name="userid" type="hidden" value="catharsist">
+                   <input id="name" name="name" type="hidden" value="Kim Kil Ho">
+                   <input id="memberkey" name="memberkey" type="hidden" value="2008-11777">
+                   <input id="daehak" name="daehak" type="hidden" value="산업공학과">
+                   <input id="sosok" name="sosok" type="hidden" value="산업공학과">
+                   <input id="groupcd" name="groupcd" type="hidden" value="S">
+                   <input id="login" name="login" type="hidden" value="1402657596208">
+                   <input id="plus" name="plus" type="hidden" value="1474610184">
+                </form>
+
+
+              <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO000/ME010.page" target="_blank" id="2">IT Service</a></li>
+            
+
+              <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO000/ME020.page" target="_blank" id="3">Career Development Center</a></li>
+            
+
+              <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO000/ME030.page" target="_blank" id="4">SNU Talk</a></li>
+            
+
+              <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO000/ME040.page" target="_blank" id="5">Cafeteria</a></li>
+            
+
+              <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO000/ME050.page" target="_blank" id="6">Parking on Campus</a></li>
+            
+
+              <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO000/ME060.page" target="_blank" id="7">Issuance of certificate</a></li>
+            
+
+              <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO000/ME070.page" target="_blank" id="8">Service Center</a></li>
+            
+
+              <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO000/ME090.page" target="_blank" id="9">complaint</a></li>
+            
+      
+              </ul>
+                        </div><!-- // quicksub -->               
+            </div><!-- // menu_box --> 
+            
+
+
+
+                        
+            <div id="smenu_box"> 
+                               
+
+        <ul class="smenu" id="smenu00" style="display:none; padding-left:-100px;">
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO999/MY031.page" title="Change Password" target="_self">Change Password</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO999/MY013.page" title="Certification Center" target="_self">Certification Center</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO999/MY014.page" title="My Scrap" target="_self">My Scrap</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO999/MY015.page" title="My Event" target="_self">My Event</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO999/MY016.page" title="My Option" target="_self">My Option</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO999/MY030.page" title="My Schedule" target="_self">My Schedule</a></li> 
+
+        </ul>
+
+        <ul class="smenu" id="smenu01" style="display:none; padding-left:-50px;">
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010/SB010.page" title="Tuition" target="_self">Tuition</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010/SB030.page" title="Class/Grade" target="_self">Class/Grade</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010/SB040.page" title="Scholarship" target="_self">Scholarship</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010/SB050.page" title="Change Student Status" target="_self">Change Student Status</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010/SB060.page" title="Graduation" target="_self">Graduation</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010/SB110.page" title="Course" target="_self">Course</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010/SB080.page" title="Camplus Life" target="_self">Camplus Life</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010/SB070.page" title="Int'I Exchange" target="_self">Int'I Exchange</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010/SB020.page" title="Get Certificates" target="_self">Get Certificates</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO010/SB100.page" title="Dormitory" target="_self">Dormitory</a></li> 
+
+        </ul>
+
+        <ul class="smenu" id="smenu02" style="display:none; padding-left:0px;">
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO020/SB090.page" title="Inbox" target="_self">Inbox</a></li> 
+
+        </ul>
+
+        <ul class="smenu" id="smenu03" style="display:none; padding-left:50px;">
+
+        </ul>
+
+        <ul class="smenu" id="smenu04" style="display:none; padding-left:100px;">
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO030/SB010.page" title="Bulletin Board" target="_self">Bulletin Board</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO030/SB020.page" title="SNU Events" target="_self">SNU Events</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO030/SB030.page" title="Community" target="_self">Community</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO030/SB040.page" title="Blog" target="_self">Blog</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO030/SB050.page" title="SNU Events admin" target="_self">SNU Events admin</a></li> 
+
+        </ul>
+
+        <ul class="smenu" id="smenu05" style="display:none; padding-left:150px;">
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO040/SB010.page" title="IT Service" target="_self">IT Service</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO040/SB020.page" title="Repairs Center" target="_self">Repairs Center</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO040/SB030.page" title="S-CARD" target="_blank">S-CARD</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO040/SB040.page" title="Academic Writing Lab" target="_blank">Academic Writing Lab</a></li> 
+
+        </ul>
+
+        <ul class="smenu" id="smenu06" style="display:none; padding-left:200px;">
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO000/ME110.page" title="SW Download" target="_blank">SW Download</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO000/ME010.page" title="IT Service" target="_blank">IT Service</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO000/ME020.page" title="Career Development Center" target="_blank">Career Development Center</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO000/ME030.page" title="SNU Talk" target="_blank">SNU Talk</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO000/ME040.page" title="Cafeteria" target="_blank">Cafeteria</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO000/ME050.page" title="Parking on Campus" target="_blank">Parking on Campus</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO000/ME060.page" title="Issuance of certificate" target="_blank">Issuance of certificate</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO000/ME070.page" title="Service Center" target="_blank">Service Center</a></li> 
+
+                <li><a href="http://my.snu.ac.kr/mysnu/portal/MS010/en/TO000/ME090.page" title="complaint" target="_blank">complaint</a></li> 
+
+        </ul>
+
+
+            </div><!-- smenu_box --> 
+            
+
+
+
+    </div><!-- end content_top -->                        
+  <!--//top end-->  
+ 
+  <div id="body"> 
+
+
+
+      
+
+  
+
+
+
+
+
+
+
+<div id="Enview_Layout_11040" class="portal-layout"> <div id="Enview_Column_11040_0" style="float:left; width:200px;" class="column"> <div id="Enview_Portlet_273974" class="portlet"> <div class="portlet-title" style="display:none;"><span class="portlet-title-content">UserInfo</span><span id="portal-page-actions" class="portlet-title-action"><a href="http://my.snu.ac.kr/mysnu/portal/_ns:YTI3Mzk3NHxkMQ__/" target="_EnviewExtraWindow" title="Min" class="action portlet-action" ><img src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/images/portlet/minimized.gif" alt="Min" border="0" /></a><a href="http://my.snu.ac.kr/mysnu/portal/_ns:YTI3Mzk3NHxkMg__/" target="_EnviewExtraWindow" title="Max" class="action portlet-action" ><img src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/images/portlet/maximized.gif" alt="Max" border="0" /></a></span></div><div id="Enview_Portlet_Content_273974" class="portlet-content"> <iframe name='IframePortlet_273974' id='IframePortlet_273974' title='UserInfo' src='/personal' width='100%' height='227px' scrolling='no' frameborder='0' >
+
+</iframe>
+</div> </div> <div id="Enview_Portlet_273972" class="portlet"> <div class="portlet-title" style="display:none;"><span class="portlet-title-content">fav</span><span id="portal-page-actions" class="portlet-title-action"><a href="http://my.snu.ac.kr/mysnu/portal/_ns:YTI3Mzk3MnxkMQ__/" target="_EnviewExtraWindow" title="Min" class="action portlet-action" ><img src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/images/portlet/minimized.gif" alt="Min" border="0" /></a><a href="http://my.snu.ac.kr/mysnu/portal/_ns:YTI3Mzk3MnxkMg__/" target="_EnviewExtraWindow" title="Max" class="action portlet-action" ><img src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/images/portlet/maximized.gif" alt="Max" border="0" /></a></span></div><div id="Enview_Portlet_Content_273972" class="portlet-content"> <iframe name='IframePortlet_273972' id='IframePortlet_273972' title='fav' onload='iframe_autoresize(this)' src='/favorite' width='100%' height='250px' scrolling='no' frameborder='0' ></iframe>
+</div> </div> <div id="Enview_Portlet_273975" class="portlet"> <div class="portlet-title" style="display:none;"><span class="portlet-title-content">siganpyo</span><span id="portal-page-actions" class="portlet-title-action"><a href="http://my.snu.ac.kr/mysnu/portal/_ns:YTI3Mzk3NXxkMQ__/" target="_EnviewExtraWindow" title="Min" class="action portlet-action" ><img src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/images/portlet/minimized.gif" alt="Min" border="0" /></a><a href="http://my.snu.ac.kr/mysnu/portal/_ns:YTI3Mzk3NXxkMg__/" target="_EnviewExtraWindow" title="Max" class="action portlet-action" ><img src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/images/portlet/maximized.gif" alt="Max" border="0" /></a></span></div><div id="Enview_Portlet_Content_273975" class="portlet-content"> <iframe name='IframePortlet_273975' id='IframePortlet_273975' title='siganpyo' onload='iframe_autoresize(this)' src='/timetable' width='220px' height='250px' scrolling='no' frameborder='0' ></iframe>
+</div> </div> </div> <div id="Enview_Column_11040_1" style="float:left; width:500px;" class="column"> <div id="Enview_Portlet_274075" class="portlet"> <div class="portlet-title" style="display:none;"><span class="portlet-title-content">Mail & 1(E)</span><span id="portal-page-actions" class="portlet-title-action"><a href="http://my.snu.ac.kr/mysnu/portal/_ns:YTI3NDA3NXxkMQ__/" target="_EnviewExtraWindow" title="Min" class="action portlet-action" ><img src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/images/portlet/minimized.gif" alt="Min" border="0" /></a><a href="http://my.snu.ac.kr/mysnu/portal/_ns:YTI3NDA3NXxkMg__/" target="_EnviewExtraWindow" title="Max" class="action portlet-action" ><img src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/images/portlet/maximized.gif" alt="Max" border="0" /></a></span></div><div id="Enview_Portlet_Content_274075" class="portlet-content"> <iframe name='IframePortlet_274075' id='IframePortlet_274075' title='Mail & 1(E)' onload='iframe_autoresize(this)' src='/maillist' width='100%' scrolling='no' frameborder='0' ></iframe>
+</div> </div> <div id="Enview_Portlet_275275" class="portlet"> <div class="portlet-title" style="display:none;"><span class="portlet-title-content">DirIcon_Center</span><span id="portal-page-actions" class="portlet-title-action"><a href="http://my.snu.ac.kr/mysnu/portal/_ns:YTI3NTI3NXxkMQ__/" target="_EnviewExtraWindow" title="Min" class="action portlet-action" ><img src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/images/portlet/minimized.gif" alt="Min" border="0" /></a><a href="http://my.snu.ac.kr/mysnu/portal/_ns:YTI3NTI3NXxkMg__/" target="_EnviewExtraWindow" title="Max" class="action portlet-action" ><img src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/images/portlet/maximized.gif" alt="Max" border="0" /></a></span></div><div id="Enview_Portlet_Content_275275" class="portlet-content"> <iframe name='IframePortlet_275275' id='IframePortlet_275275' title='DirIcon_Center' onload='iframe_autoresize(this)' src='/shortcuts' width='100%' scrolling='no' frameborder='0' ></iframe>
+</div> </div> <div id="Enview_Portlet_273977" class="portlet"> <div class="portlet-title" style="display:none;"><span class="portlet-title-content">My course</span><span id="portal-page-actions" class="portlet-title-action"><a href="http://my.snu.ac.kr/mysnu/portal/_ns:YTI3Mzk3N3xkMQ__/" target="_EnviewExtraWindow" title="Min" class="action portlet-action" ><img src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/images/portlet/minimized.gif" alt="Min" border="0" /></a><a href="http://my.snu.ac.kr/mysnu/portal/_ns:YTI3Mzk3N3xkMg__/" target="_EnviewExtraWindow" title="Max" class="action portlet-action" ><img src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/images/portlet/maximized.gif" alt="Max" border="0" /></a></span></div><div id="Enview_Portlet_Content_273977" class="portlet-content"> <iframe name='IframePortlet_273977' id='IframePortlet_273977' title='My course' onload='iframe_autoresize(this)' src='/lecture' width='100%' height='175px' scrolling='no' frameborder='0' ></iframe>
+</div> </div> <div id="Enview_Portlet_273986" class="portlet"> <div class="portlet-title" style="display:none;"><span class="portlet-title-content">Notice</span><span id="portal-page-actions" class="portlet-title-action"><a href="http://my.snu.ac.kr/mysnu/portal/_ns:YTI3Mzk4NnxkMQ__/" target="_EnviewExtraWindow" title="Min" class="action portlet-action" ><img src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/images/portlet/minimized.gif" alt="Min" border="0" /></a><a href="http://my.snu.ac.kr/mysnu/portal/_ns:YTI3Mzk4NnxkMg__/" target="_EnviewExtraWindow" title="Max" class="action portlet-action" ><img src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/images/portlet/maximized.gif" alt="Max" border="0" /></a></span></div><div id="Enview_Portlet_Content_273986" class="portlet-content"> <iframe name='IframePortlet_273986' id='IframePortlet_273986' title='Notice' onload='iframe_autoresize(this)' src='/notice' width='100%' height='330px' scrolling='no' frameborder='0' ></iframe>
+</div> </div> </div> <div id="Enview_Column_11040_2" style="float:right; width:250px;" class="column"> <div id="Enview_Portlet_274015" class="portlet"> <div class="portlet-title" style="display:none;"><span class="portlet-title-content"> campus/daum news</span><span id="portal-page-actions" class="portlet-title-action"><a href="http://my.snu.ac.kr/mysnu/portal/_ns:YTI3NDAxNXxkMQ__/" target="_EnviewExtraWindow" title="Min" class="action portlet-action" ><img src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/images/portlet/minimized.gif" alt="Min" border="0" /></a><a href="http://my.snu.ac.kr/mysnu/portal/_ns:YTI3NDAxNXxkMg__/" target="_EnviewExtraWindow" title="Max" class="action portlet-action" ><img src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/images/portlet/maximized.gif" alt="Max" border="0" /></a></span></div><div id="Enview_Portlet_Content_274015" class="portlet-content"> <iframe name='IframePortlet_274015' id='IframePortlet_274015' title=' campus/daum news' src='/news' width='100%' height='228px' scrolling='no' frameborder='0' ></iframe>
+</div> </div> <div id="Enview_Portlet_273998" class="portlet"> <div class="portlet-title" style="display:none;"><span class="portlet-title-content">event</span><span id="portal-page-actions" class="portlet-title-action"><a href="http://my.snu.ac.kr/mysnu/portal/_ns:YTI3Mzk5OHxkMQ__/" target="_EnviewExtraWindow" title="Min" class="action portlet-action" ><img src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/images/portlet/minimized.gif" alt="Min" border="0" /></a><a href="http://my.snu.ac.kr/mysnu/portal/_ns:YTI3Mzk5OHxkMg__/" target="_EnviewExtraWindow" title="Max" class="action portlet-action" ><img src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/images/portlet/maximized.gif" alt="Max" border="0" /></a></span></div><div id="Enview_Portlet_Content_273998" class="portlet-content"> <iframe name='IframePortlet_273998' id='IframePortlet_273998' title='event' onload='iframe_autoresize(this)' src='/event' width='250px' height='325px' scrolling='no' frameborder='0' ></iframe>
+</div> </div> <div id="Enview_Portlet_273999" class="portlet"> <div class="portlet-title" style="display:none;"><span class="portlet-title-content">Recent Banner</span><span id="portal-page-actions" class="portlet-title-action"><a href="http://my.snu.ac.kr/mysnu/portal/_ns:YTI3Mzk5OXxkMQ__/" target="_EnviewExtraWindow" title="Min" class="action portlet-action" ><img src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/images/portlet/minimized.gif" alt="Min" border="0" /></a><a href="http://my.snu.ac.kr/mysnu/portal/_ns:YTI3Mzk5OXxkMg__/" target="_EnviewExtraWindow" title="Max" class="action portlet-action" ><img src="http://my.snu.ac.kr/mysnu/decorations/layout/mysnu/images/portlet/maximized.gif" alt="Max" border="0" /></a></span></div><div id="Enview_Portlet_Content_273999" class="portlet-content"> <iframe name='IframePortlet_273999' id='IframePortlet_273999' title='Recent Banner' src='/banner' width='250px' height='120px' scrolling='no' frameborder='0' ></iframe>
+</div> </div> </div> <br style="clear:both;"http://my.snu.ac.kr/></div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--portlet:defineObjects/-->
+
+
+
+
+
+
+  
+
+
+
+
+  </div><!-- // body --> 
+   
+
+
+
+
+  <div id="footer">
+    <div class="foot_copy">
+        <span class="eng">COPYRIGHT (C)2007 <span class="chip">SEOUL NATIONAL UNIVERSITY.</span> ALL RIGHTS RESERVED</span><br />
+       1 Gwanak-ro, Gwanak-gu, Seoul 151-742, Korea<br />   
+        <span class="eng"><span class="chip">TEL</span> 02-880-5114   <span class="chip">FAX</span> 02-885-5272 </span><br />
+        <a href="http:/snu.ac.kr"><img src="http://my.snu.ac.kr/mysnu/Html/img/snu_logo.gif"  alt="Seoul National University" title="Seoul National University Website" /></a>     
+        </div>
+    <div class="foot_menu">
+            <ul>
+            <li><a href="http://my.snu.ac.kr/eng/images/1_privacy_policy.pdf" target="_blank">Privacy Policy</a></li>
+            <li style="background:none;"><a href="http://my.snu.ac.kr/eng/images/2_pri_coll_email.pdf" target="_blank">Prohibition of Unauthorized Collection of E-mail Addresses</a></li>
+            </ul>
+
+        </div>
+    </div><!-- //footer --> 
+
+
+
+</div><!-- //container -->
+<iframe src="" width="1040" height="0px" frameborder="0" name="pclab"></iframe>
+</body>
+</html>
+
+<script type="text/javascript">
+initEnview();
+</script>  
+

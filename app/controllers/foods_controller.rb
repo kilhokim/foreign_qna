@@ -8,23 +8,35 @@ class FoodsController < ApplicationController
 
   # ------- Unused action
   def posts_category
-    case params[:category]
-    when "korean"
-      @category = "한식"
-    when "japanese"
-      @category = "일식"
-    when "chinese"
-      @category = "중식"
-    else
-      @category = "양식"
-    end
+    @category = params[:category]
     @posts = Post.where(category: @category)
   end
   # ------- end of unused action
 
   def show
-		@post = Post.find(params[:id])
+		post = Post.find(params[:id])
+    post.views += 1
+    post.save
+    @post = post
 		@comment_writer = User.where(id: session[:user_id])[0]
+  end
+
+  def vote_up_complete
+    post = Post.find(params[:id])
+    post.votes += 1
+    post.save
+    redirect_to :back
+  end
+
+  def vote_down_complete
+    post = Post.find(params[:id])
+    if (post.votes > 0)
+      post.votes -= 1
+      post.save
+    else
+			flash[:alert] = "비추를 할 수 없습니다."
+    end
+    redirect_to :back
   end
 
   def write

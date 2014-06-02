@@ -1,0 +1,47 @@
+<div id="focus-container">
+	<iframe id="focus-frame" scrolling="no" src="/en_index">
+		#document
+	</iframe>
+	<div id="shadow_top"></div>
+	<div id="shadow_right"></div>
+	<div id="shadow_left"></div>
+	<div id="shadow_bottom"></div>
+</div>
+
+<div id="modal">
+	<h4><a href="">Attention, friends!</a></h4>
+	<p>This is the beginning of the new semester.<br>
+	Click below to move to SNU Portal!</p>
+</div>
+
+<script>
+		/*
+		function runEffect() {
+			var selectedEffect = "fade";
+			var options = {};
+
+			$("#shadow_top").effect(selectedEffect, options, 500, callback);
+
+		};
+
+		function callback() {
+			setTimeout(function() {
+				$("#shadow_top").removeAttr("style").hide().fadeIn();
+			}, 1000);
+		};
+		*/
+
+	$(document).ready(function() {
+		$(document).scrollTop("0");
+		$("#shadow_top").hide().delay(2000).fadeIn("slow");
+		$("#shadow_right").hide().delay(2000).fadeIn("slow");
+		$("#shadow_left").hide().delay(2000).fadeIn("slow");
+		$("#shadow_bottom").hide().delay(2000).fadeIn("slow");
+		$("#modal").hide().delay(2000).fadeIn("slow");
+		$("html, body").delay(1000).animate({scrollTop: 400}, 1000);
+	});
+
+
+
+</script>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>

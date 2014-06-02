@@ -32,9 +32,9 @@
                 <td class="votecell">
                   <div class="vote">
                     <input type="hidden" name="_id_" value="<%= @post.id %>">
-                    <a class="vote-up-off">up vote</a>
+                    <a class="vote-up-off" href="/foods/vote_up_complete/<%= @post.id %>">up vote</a>
                     <span class="vote-count-post"><%= @post.votes %></span>
-                    <a class="vote-down-off">down vote</a>
+                    <a class="vote-down-off" href="/foods/vote_down_complete/<%= @post.id %>">down vote</a>
                     <a class="star-off" href="#">favorite</a>
                     <div class="favoritecount">
                     </div>

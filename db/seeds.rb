@@ -18,7 +18,7 @@ u.save
 
 p = Post.new
 p.user_id = 1
-p.category = "Class"
+p.category = "class"
 p.title = "About class registration."
 p.content = "I don't know what to do but I want to register for Creative Thinking for Engineers class!!"
 p.views = 1

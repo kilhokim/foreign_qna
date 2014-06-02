@@ -1,0 +1,50 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=9">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>바로가기</title>
+	<link href="http://my.snu.ac.kr/mysnu/Html2/css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript">
+		function popUp(url, flag){
+			if(flag == "1"){
+				window.open(url, "GetCertificate", "width=1024,scrollbars=yes,menubar=no,resizable=yes");
+			}
+		}
+	</script>
+</head>
+
+<style>
+#centerArea .iconbanner ul li {
+	border-radius: 6px;
+	border: 0.5px solid #000000;
+}
+
+.important {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+}
+</style>
+
+<body>
+	<div id="centerArea">
+		<div class="iconbanner">
+		    <ul>
+		    	<li style="background: rgba(235,153,0,<%= @freq[0] %>)" class="first top"><a href="/shortcut_count/1" target="_parent"><span class="bannerimg"><% if @freq[0] > 0.5 %><img class="important" src="/assets/importantsign.png"/><% end %><img src="http://my.snu.ac.kr/mysnu/Html2/images/main/gobanner28.png" width="43px" height="43px"  alt="Get Certificate"http://my.snu.ac.kr/></span> <span class="title2">Get Certificate</span></a></li>
+				  <li style="background: rgba(235,153,0,<%= @freq[1] %>)"><a href="/shortcut_count/2" target="_parent"><span class="bannerimg"><% if @freq[1] > 0.5 %><img class="important" src="/assets/importantsign.png"/><% end %><img src="http://my.snu.ac.kr/mysnu/Html2/images/main/gobanner12.png" width="43px" height="43px"  alt="Counseling Application"http://my.snu.ac.kr/></span> <span class="title2">Counseling Application</span></a></li>
+				  <li style="background: rgba(235,153,0,<%= @freq[2]  %>)"><a href="/shortcut_count/3" target="_parent"><span class="bannerimg"><% if @freq[2] > 0.5 %><img class="important" src="/assets/importantsign.png"/><% end %><img src="http://my.snu.ac.kr/mysnu/Html2/images/main/gobanner05.png" width="43px" height="43px"  alt="Grade Search"http://my.snu.ac.kr/></span> <span class="title2">Grade Search</span></a></li>
+				  <li style="background: rgba(235,153,0,<%= @freq[3]  %>)"><a href="/shortcut_count/4" target="_parent"><span class="bannerimg"><% if @freq[3] > 0.5 %><img class="important" src="/assets/importantsign.png"/><% end %><img src="http://my.snu.ac.kr/mysnu/Html2/images/main/gobanner26.png" width="43px" height="43px"  alt="Scholarship Application"http://my.snu.ac.kr/></span> <span class="title2 shortcut">Scholarship Application</span></a></li>
+				
+				  <li style="background: rgba(235,153,0,<%= @freq[4] %>)" class="first top"><a href="/shortcut_count/5" target="_parent"><span class="bannerimg"><% if @freq[4] > 0.5 %><img class="important" src="/assets/importantsign.png"/><% end %><img src="http://my.snu.ac.kr/mysnu/Html2/images/main/gobanner17.png" width="43px" height="43px"  alt="Course Registration"http://my.snu.ac.kr/></span> <span class="title2">Course Registration</span></a></li>
+				  <li style="background: rgba(235,153,0,<%= @freq[5] %>)"><a href="/shortcut_count/6" target="_parent"><span class="bannerimg"><% if @freq[5] > 0.5 %><img class="important" src="/assets/importantsign.png"/><% end %><img src="http://my.snu.ac.kr/mysnu/Html2/images/main/gobanner33.png" width="43px" height="43px"  alt="Reversion/Reentrant Students"http://my.snu.ac.kr/></span> <span class="title2">Reversion/Reentrant Students</span></a></li>
+				  <li style="background: rgba(235,153,0,<%= @freq[6] %>)"><a href="/shortcut_count/7" target="_parent"><span class="bannerimg"><% if @freq[6] > 0.5 %><img class="important" src="/assets/importantsign.png"/><% end %><img src="http://my.snu.ac.kr/mysnu/Html2/images/main/gobanner01.png" width="43px" height="43px"  alt="Writing Tutoring"http://my.snu.ac.kr/></span> <span class="title2">Writing Tutoring</span></a></li>
+				  <li style="background: rgba(235,153,0,<%= @freq[7] %>)"><a href="/shortcut_count/8" target="_parent"><span class="bannerimg"><% if @freq[7] > 0.5 %><img class="important" src="/assets/importantsign.png"/><% end %><img src="http://my.snu.ac.kr/mysnu/Html2/images/main/gobanner12.png" width="43px" height="43px"  alt="Career Counseling"http://my.snu.ac.kr/></span> <span class="title2">Career Counseling</span></a></li>
+				
+		    </ul>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,10 +1,31 @@
 Gourmet::Application.routes.draw do
+  # en.snu.ac.kr / my.snu.ac.kr 페이지 관련 
+  get "/index" => "home#index"
+  get "/en_index" => "home#en_index"
+  get "/en_index_copy" => "home#en_index_copy"
+  root "home#highlight"
+  get "/mysnu" => "home#mysnu"
+  get "/mysnu_copy" => "home#mysnu_copy"
+  get "/shortcuts" => "home#shortcuts"
+  get "/shortcuts_copy" => "home#shortcuts_copy"
+  get "/shortcut_count" => "home#shortcuts_count"
+  get "/personal" => "home#personal"
+  get "/news" => "home#news"
+  get "/banner" => "home#banner"
+  get "/event" => "home#event"
+  get "/favorite" => "home#favorite"
+  get "/timetable" => "home#timetable"
+  get "/maillist" => "home#maillist"
+  get "/lecture" => "home#lecture"
+  get "/notice" => "home#notice"
+
+  # SNU Q&A Forum 페이지 관련
   get "users/signup"
   post "users/signup_complete"
   get "users/login"
   post "users/login_complete"
   get "users/logout_complete"
-  root 'foods#posts'
+  get "/foods/posts" => 'foods#posts'
   get "/:category" => 'foods#posts_category'
   get "foods/show/:id" => 'foods#show'
   get "foods/write"
@@ -14,6 +35,9 @@ Gourmet::Application.routes.draw do
   get "foods/delete_complete/:id" => 'foods#delete_complete'
 	post "foods/write_comment_complete"
 	get "foods/delete_comment_complete/:id" => 'foods#delete_comment_complete'
+
+  get "foods/vote_up_complete/:id" => "foods#vote_up_complete"
+  get "foods/vote_down_complete/:id" => "foods#vote_down_complete"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
