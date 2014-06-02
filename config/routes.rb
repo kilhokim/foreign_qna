@@ -8,7 +8,7 @@ Gourmet::Application.routes.draw do
   get "/mysnu_copy" => "home#mysnu_copy"
   get "/shortcuts" => "home#shortcuts"
   get "/shortcuts_copy" => "home#shortcuts_copy"
-  get "/shortcut_count" => "home#shortcuts_count"
+  get "/shortcut_count/:id" => "home#shortcut_count"
   get "/personal" => "home#personal"
   get "/news" => "home#news"
   get "/banner" => "home#banner"

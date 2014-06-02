@@ -1,3 +1,93 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  position: relative;
+}
+
+div#focus-container {
+  width: 1280px;
+  height: 1200px;
+
+  #focus-frame {
+    width: 1280px;
+    height: 1200px;
+    position: absolute;
+    border: none;
+    margin: 0;
+    z-index: 0;
+  }
+
+  div#shadow_top {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 796px;
+    display: block;
+    z-index: 1001;
+    background-color: #000000;
+    opacity: 0.5;
+    border: 0;
+  }
+  div#shadow_right {
+    position: relative;
+    top: 0;
+    right: 0;
+    float: right;
+    width: 800px;
+    height: 25px;
+    display: block;
+    z-index: 1001;
+    background-color: #000000;
+    opacity: 0.5;
+  }
+  div#shadow_left {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 335px;
+    height: 25px;
+    display: block;
+    z-index: 1001;
+    background-color: #000000;
+    opacity: 0.5;
+  }
+  div#shadow_bottom {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    width: 1280px;
+    height: 380px;
+    display: block;
+    z-index: 1001;
+    background-color: #000000;
+    opacity: 0.5;
+  }
+}
+
+
+#modal {
+  width: 270px;
+  height: 90px;
+  position: absolute;
+  top: 830px;
+  left: 275px;
+  background-color: #f1c40f;
+  border-radius: 5px;
+  text-align: center;
+  z-index: 1002;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+
+
+
