@@ -4,7 +4,7 @@
     </div>
     <div class="network-items">
       <div style="padding-top: 10px; font-size: 16px;">
-          <a href="/" class="login-link" style="color: #ffffff;">SNU Q&A Forum</a>
+          <a href="/foods/posts" class="login-link" style="color: #ffffff;">SNU Q&A Forum</a>
       </div>
     </div>
     <div class="topbar-links">
@@ -16,7 +16,7 @@
           <a href="/users/login" class="login-link" wrc_done="true">log in</a>
           &nbsp;
           <% else %>
-          <a class="login-link"><b><%= User.find(session[:user_id]).username %></b></a>
+          <a class="login-link"><strong><%= User.find(session[:user_id]).username %></strong></a>
           <a href="/users/logout_complete" class="login-link">log out</a>
           <% end %>
           <a href="#">tour</a>

@@ -88,7 +88,7 @@ class FoodsController < ApplicationController
 		if post.user_id == session[:user_id]
 			post.destroy
 			flash[:alert] = "삭제되었습니다."
-			redirect_to "/"
+			redirect_to "/foods/posts"
 		else
 			flash[:alert] = "삭제 권한이 없습니다."
 			redirect_to :back

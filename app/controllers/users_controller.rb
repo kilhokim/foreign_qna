@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       user.password = params[:password]
       if user.save
         flash[:alert] = "성공적으로 가입되었습니다."
-        redirect_to "/"
+        redirect_to "/foods/posts"
       else
         flash[:alert] = user.errors.values.flatten.join(' ')
         redirect_to :back
@@ -34,13 +34,13 @@ class UsersController < ApplicationController
     else
       session[:user_id] = user.id
       flash[:alert] = "성공적으로 로그인하였습니다."
-      redirect_to "/"
+      redirect_to "/foods/posts"
     end
   end
 
   def logout_complete
     reset_session
     flash[:alert] = "성공적으로 로그아웃하였습니다."
-    redirect_to "/"
+    redirect_to "/foods/posts"
   end
 end
