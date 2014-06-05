@@ -32,9 +32,12 @@
                 <td class="votecell">
                   <div class="vote">
                     <input type="hidden" name="_id_" value="<%= @post.id %>">
-                    <a class="vote-up-off" href="/foods/vote_up_complete/<%= @post.id %>">up vote</a>
+                    <% if @post.votelogs.find_by_user_id(session[:user_id]).nil? || !@post.votelogs.find_by_user_id(session[:user_id]).isVoted %>
+                    <a class="vote-up-off" onclick="vote_up('<%= @post.id %>');">up vote</a>
+                    <% else %>
+                    <a class="vote-up-on" onclick="already_voted();">up vote</a> <% end %>
                     <span class="vote-count-post"><%= @post.votes %></span>
-                    <a class="vote-down-off" href="/foods/vote_down_complete/<%= @post.id %>">down vote</a>
+                    <a class="vote-down-off" href="/qna/vote_down_complete/<%= @post.id %>">down vote</a>
                     <a class="star-off" href="#">favorite</a>
                     <div class="favoritecount">
                     </div>
@@ -55,7 +58,7 @@
                             <div class="post-menu">
                               <a href="#" class="short-link" id="link-post-<%= @post.id %>">share</a>
                               <span class="lsep">|</span>
-                              <a href="/foods/edit/<%= @post.id %>" class="suggest-edit-post">improve this question</a>
+                              <a href="/qna/edit/<%= @post.id %>" class="suggest-edit-post">improve this question</a>
                             </div>
                           </td>
                           <td class="post-signature owner">
@@ -199,7 +202,7 @@
           </div> <!-- end div#answer-id -->
           <% end %>
           <a name="new-answer"></a>
-          <form id="post-form" action="/foods/write_comment_complete" method="post" class="post-form">
+          <form id="post-form" action="/qna/write_comment_complete" method="post" class="post-form">
             <input type="hidden" id="post-id" name="post_id" value="<%= @post.id %>">
             <h2 class="space">Your Answer</h2>
             <div id="post-editor" class="post-editor">

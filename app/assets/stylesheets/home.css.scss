@@ -76,7 +76,7 @@ div#focus-container {
 
 #modal {
   width: 270px;
-  height: 90px;
+  height: 110px;
   position: absolute;
   top: 830px;
   left: 275px;
@@ -89,5 +89,11 @@ div#focus-container {
 }
 
 
+div.hide {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  display: none;
+}
 
 

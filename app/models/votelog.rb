@@ -1,4 +1,4 @@
-class VotePosts < ActiveRecord::Base
+class Votelog < ActiveRecord::Base
   belongs_to  :user
   belongs_to  :post
 end

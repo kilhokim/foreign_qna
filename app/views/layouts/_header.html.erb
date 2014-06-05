@@ -4,20 +4,20 @@
     </div>
     <div class="network-items">
       <div style="padding-top: 10px; font-size: 16px;">
-          <a href="/foods/posts" class="login-link" style="color: #ffffff;">SNU Q&A Forum</a>
+          <a href="/qna" class="login-link" style="color: #ffffff;">SNU Q&A Forum</a>
       </div>
     </div>
     <div class="topbar-links">
       <div class="links-container">
         <span class="topbar-menu-links">
           <% if session[:user_id].nil? %>
-          <a href="/users/signup" class="login-link" wrc_done="true">sign up</a>
+          <a href="/qna/signup" class="login-link" wrc_done="true">sign up</a>
           &nbsp;
-          <a href="/users/login" class="login-link" wrc_done="true">log in</a>
+          <a href="/qna/login" class="login-link" wrc_done="true">log in</a>
           &nbsp;
           <% else %>
           <a class="login-link"><strong><%= User.find(session[:user_id]).username %></strong></a>
-          <a href="/users/logout_complete" class="login-link">log out</a>
+          <a href="/qna/logout_complete" class="login-link">log out</a>
           <% end %>
           <a href="#">tour</a>
           <a href="#" class="icon-help js-help-button">help <span class="triangle"></span></a>

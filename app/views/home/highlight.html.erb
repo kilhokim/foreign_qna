@@ -12,25 +12,10 @@
 	<h4>Attention, friends!</h4>
 	<p>This is the beginning of the new semester.<br>
 	Click below to move to SNU Portal!</p>
+  <button id="hideButton">Don't show again</button>
 </div>
 
 <script>
-		/*
-		function runEffect() {
-			var selectedEffect = "fade";
-			var options = {};
-
-			$("#shadow_top").effect(selectedEffect, options, 500, callback);
-
-		};
-
-		function callback() {
-			setTimeout(function() {
-				$("#shadow_top").removeAttr("style").hide().fadeIn();
-			}, 1000);
-		};
-		*/
-
 	$(document).ready(function() {
 		$(document).scrollTop("0");
 		$("#shadow_top").hide().delay(2000).fadeIn("slow");
@@ -40,6 +25,22 @@
 		$("#modal").hide().delay(2000).fadeIn("slow");
 		$("html, body").delay(1000).animate({scrollTop: 400}, 1000);
 	});
+
+  $('#hideButton').click(function() {
+    //$('#shadow_top').slideUp('fast',function(){
+      $('#shadow_top').css('top','-9999px'); 
+    //});
+    //$('#shadow_right').slideUp('fast',function(){
+      $('#shadow_right').addClass('hide'); 
+    //});
+    //$('#shadow_left').slideUp('fast',function(){
+      $('#shadow_left').addClass('hide'); 
+    //});
+    //$('#shadow_bottom').slideUp('fast',function(){
+      $('#shadow_bottom').addClass('hide'); 
+    //});
+      $('#modal').css('top','-9999px'); 
+  });
 
 
 

@@ -79,6 +79,9 @@ class HomeController < ActionController::Base
   def maillist
   end
 
+  def qnalist
+  end
+
   def lecture
   end
 

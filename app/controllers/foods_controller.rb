@@ -6,12 +6,10 @@ class FoodsController < ApplicationController
 		@posts = Post.all
   end
 
-  # ------- Unused action
   def posts_category
     @category = params[:category]
     @posts = Post.where(category: @category)
   end
-  # ------- end of unused action
 
   def show
 		post = Post.find(params[:id])
@@ -22,21 +20,62 @@ class FoodsController < ApplicationController
   end
 
   def vote_up_complete
-    post = Post.find(params[:id])
-    post.votes += 1
-    post.save
-    redirect_to :back
+    v = Votelog.where(:user_id => session[:user_id]).where(:post_id => params[:id]).first
+    # If not voted up, first vote up or revote up
+    if v.nil?
+      v_new = Votelog.new(:user_id => session[:user_id], :post_id => params[:id], :isVoted => true)
+      v_new.save
+
+      post_voted = Post.find_by_id(params[:id])
+      post_voted.votes += 1
+      post_voted.save
+      data = post_voted.votes
+      
+    elsif !v.isVoted
+      v.isVoted = true
+      v.save
+
+      post_voted = Post.find_by_id(params[:id])
+      post_voted.votes += 1
+      post_voted.save
+      data = post_voted.votes
+
+    # If already voted up, no effect
+    end
+
+    respond_to do |format|
+      format.json { render :json => data }
+    end
+    
   end
 
   def vote_down_complete
-    post = Post.find(params[:id])
-    if (post.votes > 0)
-      post.votes -= 1
-      post.save
-    else
-			flash[:alert] = "비추를 할 수 없습니다."
+    v = Votelog.where(:user_id => session[:user_id]).where(:post_id => params[:id]).first
+    # If not voted up, first vote up or revote up
+    if v.nil?
+      v_new = Votelog.new(:user_id => session[:user_id], :post_id => params[:id], :isVoted => true)
+      v_new.save
+
+      post_voted = Post.find_by_id(params[:id])
+      post_voted.votes += 1
+      post_voted.save
+      data = post_voted.votes
+      
+    elsif !v.isVoted
+      v.isVoted = true
+      v.save
+
+      post_voted = Post.find_by_id(params[:id])
+      post_voted.votes += 1
+      post_voted.save
+      data = post_voted.votes
+
+    # If already voted up, no effect
     end
-    redirect_to :back
+
+    respond_to do |format|
+      format.json { render :json => data }
+    end
   end
 
   def write
@@ -52,7 +91,7 @@ class FoodsController < ApplicationController
     post.votes = 0
     if post.save
       flash[:alert] = "저장되었습니다."
-      redirect_to "/foods/show/#{post.id}"
+      redirect_to "/qna/show/#{post.id}"
     else
       flash[:alert] = post.errors.values.flatten.join(' ')
       redirect_to :back
@@ -76,7 +115,7 @@ class FoodsController < ApplicationController
     post.votes = 0
     if post.save
       flash[:alert] = "수정되었습니다."
-      redirect_to "/foods/show/#{post.id}"
+      redirect_to "/qna/show/#{post.id}"
     else
       flash[:alert] = post.errors.values.flatten.join(' ')
       redirect_to :back
@@ -88,7 +127,7 @@ class FoodsController < ApplicationController
 		if post.user_id == session[:user_id]
 			post.destroy
 			flash[:alert] = "삭제되었습니다."
-			redirect_to "/foods/posts"
+			redirect_to "/qna/posts"
 		else
 			flash[:alert] = "삭제 권한이 없습니다."
 			redirect_to :back
@@ -104,7 +143,7 @@ class FoodsController < ApplicationController
     comment.save
 
     flash[:alert] = "새 댓글을 달았습니다."
-    redirect_to "/foods/show/#{comment.post_id}"
+    redirect_to "/qna/show/#{comment.post_id}"
   end
 
 	def delete_comment_complete
@@ -112,7 +151,7 @@ class FoodsController < ApplicationController
 		if comment.user_id == session[:user_id]
 			comment.destroy
 			flash[:alert] = "댓글이 삭제되었습니다."
-			redirect_to "/foods/show/#{comment.post_id}"
+			redirect_to "/qna/show/#{comment.post_id}"
 		else
 			flash[:alert] = "해당 댓글의 삭제 권한이 없습니다."
 			redirect_to :back

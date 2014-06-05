@@ -1,6 +1,6 @@
-class CreateVotePosts < ActiveRecord::Migration
+class CreateVotelogs < ActiveRecord::Migration
   def change
-    create_table :vote_posts do |t|
+    create_table :votelogs do |t|
       t.integer :user_id
       t.integer :post_id
       t.boolean :isVoted

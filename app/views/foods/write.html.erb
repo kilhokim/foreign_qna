@@ -5,38 +5,11 @@
   </div>
   <% end %>
 
-  <div id="header" class="headeranon">
-    <br class="cbt">
-    <div id="hlogo">
-      <a href="/" style="background-image: url('/assets/img01_mark_ab0102.gif');">SNU</a>
-    </div>
-    <div id="hmenus">
-      <div class="nav mainnavs mainnavsanon">
-        <ul>
-          <li>
-            <a id="nav-class" href="#">Class</a>
-          </li>
-          <li>
-            <a id="nav-grade" href="#">Grades</a>
-          </li>
-          <li>
-            <a id="nav-activity" href="#">Activities</a>
-          </li>
-        </ul>
-      </div> <!-- end div.nav mainnavs mainnavsanon -->
-      <div class="nav askquestion" style="display: none">
-        <ul>
-          <li>
-            <a id="nav-askquestion" href="/foods/write">Ask Question</a>
-          </li>
-        </ul>
-      </div> <!-- end div.nav askquestion -->
-    </div> <!-- end hmenus -->
-  </div> <!-- end div#header -->
+  <%= render :partial => 'foods/subheader' %>
 
   <div id="content">
     <div id="mainbar" class="ask-mainbar">
-      <form id="post-form" class="post-form" action="/foods/write_complete" method="post">
+      <form id="post-form" class="post-form" action="/qna/write_complete" method="post">
         <input type="hidden" name="qualityBanWarningShown" value="False">
         <div id="question-form">
           <div style="position: relative;">
@@ -71,22 +44,11 @@
             </div> <!-- end div.edit-block -->
           </div> <!-- end div#post-editor -->
           <div style="position: relative;">
-            <div style="position: relative;">
-              <div class="form-item">
-                <select name="post_category">
-                  <option value="class">Class</option>
-                  <option value="grades">Grades</option>
-                  <option value="activities">Activities</option>
-                </select>
-                <label>Tags</label>
-                <input id="tagnames" name="tagnames" type="text" size="60" value tabindex="103" style="display: none">
-                <div class="actual-edit-overlay" style="width: 666px; height: 27px; opacity: 1; position: absolute; color: black; -webkit-text-fill-color: black; line-height: 27px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; text-align: start; border: 1px solid rgb(153, 153, 153); background-color: white;" disabled="disabled">&nbsp;at least one tag, max 5 tags
-                </div> <!-- end div.actual-edit-overlay -->
-                <div class="tag-editor edit-field-overlayed" style="width: 666px; height: 27px; opacity: 0.4; z-index: 1; position: relative;"><span></span><input type="text" tabindex="103" style="width: 658px;"><span></span>
-                </div> <!-- end div.tag-editor edit-field-overlayed -->
-                <span class="edit-field-overlay">at least one tag, max 5 tags</span>
-              </div> <!-- end div.form-item -->
-            </div>
+            <select name="post_category">
+              <option value="class">Class</option>
+              <option value="grades">Grades</option>
+              <option value="activities">Activities</option>
+            </select>
           </div>
           <div id="question-only-section">
             <div class="form-submit cbt">
@@ -116,3 +78,9 @@
     </div> <!-- end div#sidebar -->
   </div> <!-- end div#content -->
 </div>
+
+<script>
+  $(document).ready(function(){
+    $("#nav-askquestion").css("display",'none');
+  });
+</script>

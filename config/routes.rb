@@ -16,28 +16,30 @@ Gourmet::Application.routes.draw do
   get "/favorite" => "home#favorite"
   get "/timetable" => "home#timetable"
   get "/maillist" => "home#maillist"
+  get "/qnalist" => "home#qnalist"
   get "/lecture" => "home#lecture"
   get "/notice" => "home#notice"
 
   # SNU Q&A Forum 페이지 관련
-  get "users/signup"
-  post "users/signup_complete"
-  get "users/login"
-  post "users/login_complete"
-  get "users/logout_complete"
-  get "/foods/posts" => 'foods#posts'
-  get "/:category" => 'foods#posts_category'
-  get "foods/show/:id" => 'foods#show'
-  get "foods/write"
-  post "foods/write_complete"
-  get "foods/edit/:id" => 'foods#edit'
-  post "foods/edit_complete"
-  get "foods/delete_complete/:id" => 'foods#delete_complete'
-	post "foods/write_comment_complete"
-	get "foods/delete_comment_complete/:id" => 'foods#delete_comment_complete'
+  get "qna/signup" => 'users#signup'
+  post "qna/signup_complete" => 'users#signup_complete'
+  get "qna/login" => 'users#login'
+  post "qna/login_complete" => 'users#login_complete'
+  get "qna/logout_complete" => 'users#logout_complete'
 
-  get "foods/vote_up_complete/:id" => "foods#vote_up_complete"
-  get "foods/vote_down_complete/:id" => "foods#vote_down_complete"
+  get "qna" => 'foods#posts'
+  get "category/:category" => 'foods#posts_category'
+  get "qna/show/:id" => 'foods#show'
+  get "qna/write" => 'foods#write'
+  post "qna/write_complete" => 'foods#write_complete'
+  get "qna/edit/:id" => 'foods#edit'
+  post "qna/edit_complete" => 'foods#edit_complete'
+  get "qna/delete_complete/:id" => 'foods#delete_complete'
+	post "qna/write_comment_complete" => 'foods#write_comment_complete'
+	get "qna/delete_comment_complete/:id" => 'foods#delete_comment_complete'
+
+  post "qna/vote_up_complete" => "foods#vote_up_complete"
+  post "qna/vote_down_complete" => "foods#vote_down_complete"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

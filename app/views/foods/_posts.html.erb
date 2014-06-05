@@ -14,7 +14,7 @@
     <div id="question-mini-list">
       <% @posts.reverse.each do |post| %>
       <div class="question-summary narrow" id="question-summary-<%=post.id%>">
-        <div onclick="window.location.href='/foods/show/<%= post.id %>'" class="cp">
+        <div onclick="window.location.href='/qna/show/<%= post.id %>'" class="cp">
           <div class="votes">
             <div class="mini-counts">
               <span><%= post.votes %></span>
@@ -35,12 +35,12 @@
           </div>
         </div> <!-- end div.cp -->
         <div class="summary">
-          <h3><a class="question-hyperlink" href="/foods/show/<%= post.id %>"><%= post.title %></a></h3>
+          <h3><a class="question-hyperlink" href="/qna/show/<%= post.id %>"><%= post.title %></a></h3>
           <div class="tags">
             <a class="post-tag" href="#"><%= post.category %></a>
           </div>
           <div class="started">
-            <a class="started-link" href="/foods/show/<%= post.id %>">asked <span class="relativetime">#m ago</span></a>
+            <a class="started-link" href="/qna/show/<%= post.id %>">asked <span class="relativetime">#m ago</span></a>
             <a href="#"><%= post.user.username %></a>
             <span class="reputation-score">1</span>
           </div>

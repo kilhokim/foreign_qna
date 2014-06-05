@@ -5,34 +5,7 @@
   </div>
   <% end %>
 
-  <div id="header" class="headeranon">
-    <br class="cbt">
-    <div id="hlogo">
-      <a href="/" style="background-image: url('/assets/img01_mark_ab0102.gif');">SNU</a>
-    </div>
-    <div id="hmenus">
-      <div class="nav mainnavs mainnavsanon">
-        <ul>
-          <li>
-            <a id="nav-class" href="/class">Class</a>
-          </li>
-          <li>
-            <a id="nav-grade" href="/grades">Grades</a>
-          </li>
-          <li>
-            <a id="nav-activity" href="/activities">Activities</a>
-          </li>
-        </ul>
-      </div> <!-- end div.nav mainnavs mainnavsanon -->
-      <div class="nav askquestion">
-        <ul>
-          <li>
-            <a id="nav-askquestion" href="/foods/write">Ask Question</a>
-          </li>
-        </ul>
-      </div> <!-- end div.nav askquestion -->
-    </div> <!-- end hmenus -->
-  </div> <!-- end div#header -->
+  <%= render :partial => 'foods/subheader' %>
 
   <div id="content">
     <div id="herobox">
