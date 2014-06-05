@@ -32,12 +32,17 @@
                 <td class="votecell">
                   <div class="vote">
                     <input type="hidden" name="_id_" value="<%= @post.id %>">
-                    <% if @post.votelogs.find_by_user_id(session[:user_id]).nil? || !@post.votelogs.find_by_user_id(session[:user_id]).isVoted %>
-                    <a class="vote-up-off" onclick="vote_up('<%= @post.id %>');">up vote</a>
+                    <% if @post.votelogs.find_by_user_id(session[:user_id]).nil? || @post.votelogs.find_by_user_id(session[:user_id]).vote_score <= 0 %>
+                    <a class="vote-up-off" onclick="vote_post_up('<%= @post.id %>');">up vote</a>
                     <% else %>
-                    <a class="vote-up-on" onclick="already_voted();">up vote</a> <% end %>
+                    <a class="vote-up-on" onclick="vote_post_up('<%= @post.id %>');">up vote</a> 
+                    <% end %>
                     <span class="vote-count-post"><%= @post.votes %></span>
-                    <a class="vote-down-off" href="/qna/vote_down_complete/<%= @post.id %>">down vote</a>
+                    <% if @post.votelogs.find_by_user_id(session[:user_id]).nil? || @post.votelogs.find_by_user_id(session[:user_id]).vote_score >= 0 %>
+                    <a class="vote-down-off" onclick="vote_post_down('<%= @post.id %>');">down vote</a>
+                    <% else %>
+                    <a class="vote-down-on" onclick="vote_post_down('<%= @post.id %>');">down vote</a> 
+                    <% end %>
                     <a class="star-off" href="#">favorite</a>
                     <div class="favoritecount">
                     </div>
@@ -127,9 +132,17 @@
                   <td class="votecell">
                     <div class="vote">
                       <input type="hidden" name="_id_" value="<%= comment.id %>">
-                      <a class="vote-up-off">up vote</a>
+                      <% if comment.votecommentlogs.find_by_user_id(session[:user_id]).nil? || comment.votecommentlogs.find_by_user_id(session[:user_id]).vote_score <= 0 %>
+                      <a class="vote-up-off" onclick="vote_comment_up('<%= comment.id %>');">up vote</a>
+                      <% else %>
+                      <a class="vote-up-on" onclick="vote_comment_up('<%= comment.id %>');">up vote</a>
+                      <% end %>
                       <span class="vote-count-post"><%= comment.votes %></span>
-                      <a class="vote-down-off">down vote</a>
+                      <% if comment.votecommentlogs.find_by_user_id(session[:user_id]).nil? || comment.votecommentlogs.find_by_user_id(session[:user_id]).vote_score >= 0 %>
+                      <a class="vote-down-off" onclick="vote_comment_down('<%= comment.id %>');">down vote</a>
+                      <% else %>
+                      <a class="vote-down-on" onclick="vote_comment_down('<%= comment.id %>');">down vote</a>
+                      <% end %>
                     </div>
                   </td>
                   <td class="answercell">

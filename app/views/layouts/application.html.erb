@@ -18,16 +18,16 @@
 
 <!-- Vote up and vote down -->
 <script>
-  function vote_up(post_id) {
+  function vote_post_up(post_id) {
     $.ajax({
-      url: "/qna/vote_up_complete.json",
+      url: "/qna/vote_post_up_complete.json",
       type: "POST",
       data: {
         id: post_id
       },
       success: function(data) {
-        $('#question .vote-up-off').attr('onclick',"already_voted();");
         $('#question .vote-up-off').addClass("vote-up-on");
+        $('#question .vote-down-on').removeClass("vote-down-on").addClass("vote-down-off");
         $('#question .vote-count-post').html(data);
         // alert("(임시) Voted up successfully.");
       },
@@ -41,16 +41,16 @@
     alert("Already voted");
   }
 
-  function vote_down(post_id) {
+  function vote_post_down(post_id) {
     $.ajax({
-      url: "/qna/vote_down_complete.json",
+      url: "/qna/vote_post_down_complete.json",
       type: "POST",
       data: {
         id: post_id
       },
       success: function(data) {
-        $('#question .vote-up-off').attr('onclick',"already_voted();");
-        $('#question .vote-up-off').addClass("vote-up-on");
+        $('#question .vote-down-off').addClass("vote-down-on");
+        $('#question .vote-up-on').removeClass("vote-up-on").addClass("vote-up-off");
         $('#question .vote-count-post').html(data);
         // alert("(임시) Voted up successfully.");
       },
@@ -60,8 +60,42 @@
     });
   }
   
-  function already_voted() {
-    alert("Already voted");
+  function vote_comment_up(comment_id) {
+    $.ajax({
+      url: "/qna/vote_comment_up_complete.json",
+      type: "POST",
+      data: {
+        id: comment_id
+      },
+      success: function(data) {
+        $('#answer-' + comment_id + ' .vote-up-off').addClass("vote-up-on");
+        $('#answer-' + comment_id + ' .vote-down-on').removeClass("vote-down-on").addClass("vote-down-off");
+        $('#answer-' + comment_id + ' .vote-count-post').html(data);
+        // alert("(임시) Voted up successfully.");
+      },
+      error: function() {
+        // alert("Already voted");
+      }
+    });
+  }
+
+  function vote_comment_down(comment_id) {
+    $.ajax({
+      url: "/qna/vote_comment_down_complete.json",
+      type: "POST",
+      data: {
+        id: comment_id
+      },
+      success: function(data) {
+        $('#answer-' + comment_id + ' .vote-down-off').addClass("vote-down-on");
+        $('#answer-' + comment_id + ' .vote-up-on').removeClass("vote-up-on").addClass("vote-up-off");
+        $('#answer-' + comment_id + ' .vote-count-post').html(data);
+        // alert("(임시) Voted up successfully.");
+      },
+      error: function() {
+        // alert("Already voted");
+      }
+    });
   }
 </script>
 

@@ -19,11 +19,11 @@ class FoodsController < ApplicationController
 		@comment_writer = User.where(id: session[:user_id])[0]
   end
 
-  def vote_up_complete
+  def vote_post_up_complete
     v = Votelog.where(:user_id => session[:user_id]).where(:post_id => params[:id]).first
     # If not voted up, first vote up or revote up
     if v.nil?
-      v_new = Votelog.new(:user_id => session[:user_id], :post_id => params[:id], :isVoted => true)
+      v_new = Votelog.new(:user_id => session[:user_id], :post_id => params[:id], :vote_score => 1)
       v_new.save
 
       post_voted = Post.find_by_id(params[:id])
@@ -31,8 +31,8 @@ class FoodsController < ApplicationController
       post_voted.save
       data = post_voted.votes
       
-    elsif !v.isVoted
-      v.isVoted = true
+    elsif v.vote_score <= 0
+      v.vote_score += 1
       v.save
 
       post_voted = Post.find_by_id(params[:id])
@@ -41,6 +41,8 @@ class FoodsController < ApplicationController
       data = post_voted.votes
 
     # If already voted up, no effect
+    else
+      data = post_voted.votes
     end
 
     respond_to do |format|
@@ -49,28 +51,92 @@ class FoodsController < ApplicationController
     
   end
 
-  def vote_down_complete
+  def vote_post_down_complete
     v = Votelog.where(:user_id => session[:user_id]).where(:post_id => params[:id]).first
     # If not voted up, first vote up or revote up
     if v.nil?
-      v_new = Votelog.new(:user_id => session[:user_id], :post_id => params[:id], :isVoted => true)
+      v_new = Votelog.new(:user_id => session[:user_id], :post_id => params[:id], :vote_score => -1)
       v_new.save
 
       post_voted = Post.find_by_id(params[:id])
-      post_voted.votes += 1
+      post_voted.votes -= 1
       post_voted.save
       data = post_voted.votes
       
-    elsif !v.isVoted
-      v.isVoted = true
+    elsif v.vote_score >= 0
+      v.vote_score -= 1
       v.save
 
       post_voted = Post.find_by_id(params[:id])
-      post_voted.votes += 1
+      post_voted.votes -= 1
       post_voted.save
       data = post_voted.votes
 
+    # If already voted down, no effect
+    else
+      data = post_voted.votes
+    end
+
+    respond_to do |format|
+      format.json { render :json => data }
+    end
+  end
+
+  def vote_comment_up_complete
+    v = Votecommentlog.where(:user_id => session[:user_id]).where(:comment_id => params[:id]).first
+    # If not voted up, first vote up or revote up
+    if v.nil?
+      v_new = Votecommentlog.new(:user_id => session[:user_id], :comment_id => params[:id], :vote_score => 1)
+      v_new.save
+
+      comment_voted = Comment.find_by_id(params[:id])
+      comment_voted.votes += 1
+      comment_voted.save
+      data = comment_voted.votes
+      
+    elsif v.vote_score <= 0
+      v.vote_score += 1
+      v.save
+
+      comment_voted = Comment.find_by_id(params[:id])
+      comment_voted.votes += 1
+      comment_voted.save
+      data = comment_voted.votes
+
     # If already voted up, no effect
+    else
+      data = comment_voted.votes
+    end
+
+    respond_to do |format|
+      format.json { render :json => data }
+    end
+  end
+
+  def vote_comment_down_complete
+    v = Votecommentlog.where(:user_id => session[:user_id]).where(:comment_id => params[:id]).first
+    # If not voted up, first vote up or revote up
+    if v.nil?
+      v_new = Votecommentlog.new(:user_id => session[:user_id], :comment_id => params[:id], :vote_score => -1)
+      v_new.save
+
+      comment_voted = Comment.find_by_id(params[:id])
+      comment_voted.votes -= 1
+      comment_voted.save
+      data = comment_voted.votes
+      
+    elsif v.vote_score >= 0
+      v.vote_score -= 1
+      v.save
+
+      comment_voted = Comment.find_by_id(params[:id])
+      comment_voted.votes -= 1
+      comment_voted.save
+      data = comment_voted.votes
+
+    # If already voted down, no effect
+    else
+      data = comment_voted.votes
     end
 
     respond_to do |format|

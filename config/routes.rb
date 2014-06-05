@@ -38,8 +38,10 @@ Gourmet::Application.routes.draw do
 	post "qna/write_comment_complete" => 'foods#write_comment_complete'
 	get "qna/delete_comment_complete/:id" => 'foods#delete_comment_complete'
 
-  post "qna/vote_up_complete" => "foods#vote_up_complete"
-  post "qna/vote_down_complete" => "foods#vote_down_complete"
+  post "qna/vote_post_up_complete" => "foods#vote_post_up_complete"
+  post "qna/vote_post_down_complete" => "foods#vote_post_down_complete"
+  post "qna/vote_comment_up_complete" => "foods#vote_comment_up_complete"
+  post "qna/vote_comment_down_complete" => "foods#vote_comment_down_complete"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -3,7 +3,7 @@ class CreateVotelogs < ActiveRecord::Migration
     create_table :votelogs do |t|
       t.integer :user_id
       t.integer :post_id
-      t.boolean :isVoted
+      t.integer :vote_score
 
       t.timestamps
     end
