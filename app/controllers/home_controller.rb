@@ -80,6 +80,7 @@ class HomeController < ActionController::Base
   end
 
   def qnalist
+    @posts = Post.order(created_at: :desc).limit(6)
   end
 
   def lecture

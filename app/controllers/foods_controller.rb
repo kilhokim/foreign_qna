@@ -3,7 +3,21 @@ class FoodsController < ApplicationController
 	skip_before_action :login_check, :only => [:posts, :posts_category, :show]
 
   def posts
-		@posts = Post.all
+    @tab = params[:tab]
+    case @tab
+      when nil
+        @posts = Post.order(votes: :desc)
+      when "hot"
+        @posts = Post.order(votes: :desc)
+      when "popular"
+        @posts = Post.order(views: :desc)
+      when "today"
+        @posts = Post.order(created_at: :desc).where(created_at: Time.at(Time.now.to_i-86400)..Time.now)
+      when "week"
+        @posts = Post.order(created_at: :desc).where(created_at: Time.at(Time.now.to_i-604800)..Time.now)
+      when "alltime"
+        @posts = Post.order(created_at: :desc)
+    end
   end
 
   def posts_category
@@ -177,8 +191,6 @@ class FoodsController < ApplicationController
     post.category = params[:post_category]
     post.title = params[:post_title]
     post.content = params[:post_content]
-    post.views = 0
-    post.votes = 0
     if post.save
       flash[:alert] = "수정되었습니다."
       redirect_to "/qna/show/#{post.id}"
@@ -193,7 +205,7 @@ class FoodsController < ApplicationController
 		if post.user_id == session[:user_id]
 			post.destroy
 			flash[:alert] = "삭제되었습니다."
-			redirect_to "/qna/posts"
+			redirect_to "/qna"
 		else
 			flash[:alert] = "삭제 권한이 없습니다."
 			redirect_to :back

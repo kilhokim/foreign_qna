@@ -54,7 +54,7 @@
                       <%= @post.content %>
                     </div>
                     <div class="post-taglist">
-                      <a href="#" class="post-tag"><%= @post.category %></a>
+                      <a href="/category/<%= @post.category %>" class="post-tag"><%= @post.category %></a>
                     </div>
                     <table class="fw">
                       <tbody>
@@ -63,13 +63,17 @@
                             <div class="post-menu">
                               <a href="#" class="short-link" id="link-post-<%= @post.id %>">share</a>
                               <span class="lsep">|</span>
-                              <a href="/qna/edit/<%= @post.id %>" class="suggest-edit-post">improve this question</a>
+                              <a href="/qna/edit/<%= @post.id %>" class="suggest-edit-post">edit</a>
+                              <% if @post.user_id == session[:user_id] %>
+                              <span class="lsep">|</span>
+                              <a href="/qna/delete_complete/<%= @post.id %>">delete</a>
+                              <% end %>
                             </div>
                           </td>
                           <td class="post-signature owner">
                             <div class="user-info">
                               <div class="user-action-time">
-                                asked <span class="relativetime"># hours ago</span>
+                                asked <span class="relativetime"><%= @post.elapsed %></span>
                               </div>
                               <div class="user-gravatar32">
                                 <a href="#">
@@ -80,7 +84,7 @@
                               </div>
                               <div class="user-details">
                                 <a href="#"><%= @post.user.username %></a>
-                                <span class="requtation-score">1</span>
+                                <span class="requtation-score"><strong><%= @post.user.posts.count %></strong></span>
                               </div>
                             </div>
                           </td>
@@ -156,13 +160,17 @@
                             <div class="post-menu">
                               <a href="#" class="short-link" id="link-post-<%= comment.id %>">share</a>
                               <span class="lsep">|</span>
-                              <a href="#" class="suggest-edit-post">improve this answer</a>
+                              <a href="#" class="suggest-edit-post">edit</a>
+                              <% if comment.user_id == session[:user_id] %>
+                              <span class="lsep">|</span>
+                              <a href="/qna/delete_comment_complete/<%= comment.id %>">delete</a>
+                              <% end %>
                             </div>
                           </td>
                           <td align="right" class="post-signature">
                             <div class="user-info user-hover">
                               <div class="user-action-time">
-                                answered <span class="relativetime"># hours ago</span>
+                                answered <span class="relativetime"><%= comment.elapsed %></span>
                               </div>
                               <div class="user-gravatar32">
                                 <a href="#">

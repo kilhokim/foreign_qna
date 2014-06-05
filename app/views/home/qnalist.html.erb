@@ -1,6 +1,7 @@
 <link href="http://my.snu.ac.kr/mysnu/Html2/css/style.css" rel="stylesheet" type="text/css" />
 <script language="JavaScript">
  
+ /*
   function pageDisplay(e){
     
     var it1 = document.getElementById("item1");
@@ -35,6 +36,7 @@
     }
     
   }
+  */
 
 </script>
 
@@ -42,97 +44,17 @@
      <div class="maincont">
          <!--(eTL)나의수강강좌-->
          <div class="lecture">
-             <div class="title"><span><img src="http://my.snu.ac.kr/mysnu/Html2/images/stu/tabtitleLecture.gif" alt="나의수강강좌" /></span> <span class="more"><a href="http://newetl.snu.ac.kr/" target="_blank">더보기</a></span></div>
-             <ul> 
-              
-      <div id="item1">
-         
-          <li>
-             <span class="title" title="공학도의 도전과 리더십">공학도의 도전과 리더십</span>
-                       <span class="mintB"><a href="http://etl.snu.ac.kr/course/view.php?id=69312" target="_blank" >eTL</a></span>
-                       <span class="grayB"><a href="/mysnu/portal/MS010/ko/TO980/SB010/ME300" target="_parent">상담</a></span>
-          </li>
-         
-          <li>
-             <span class="title" title="Creative Thinking for Engineers">Creative Thinking for Engineers</span>
-                       <span class="mintB"><a href="http://etl.snu.ac.kr/course/view.php?id=69327" target="_blank" >eTL</a></span>
-                       <span class="grayB"><a href="/mysnu/portal/MS010/ko/TO980/SB010/ME300" target="_parent">상담</a></span>
-          </li>
-         
-          <li>
-             <span class="title" title="산업공학세미나">산업공학세미나</span>
-                       <span class="mintB"><a href="http://etl.snu.ac.kr/course/view.php?id=69329" target="_blank" >eTL</a></span>
-                       <span class="grayB"><a href="/mysnu/portal/MS010/ko/TO980/SB010/ME300" target="_parent">상담</a></span>
-          </li>
-         
-          <li>
-             <span class="title" title="영상예술의 이해">영상예술의 이해</span>
-                       <span class="mintB"><a href="http://etl.snu.ac.kr/course/view.php?id=71487" target="_blank" >eTL</a></span>
-                       <span class="grayB"><a href="/mysnu/portal/MS010/ko/TO980/SB010/ME300" target="_parent">상담</a></span>
-          </li>
-         
-          <li>
-             <span class="title" title="자료구조">자료구조</span>
-                       <span class="mintB"><a href="http://etl.snu.ac.kr/course/view.php?id=75008" target="_blank" >eTL</a></span>
-                       <span class="grayB"><a href="/mysnu/portal/MS010/ko/TO980/SB010/ME300" target="_parent">상담</a></span>
-          </li>
-         
-          <li>
-             <span class="title" title="전략경영특강">전략경영특강</span>
-                       <span class="mintB"><a href="http://etl.snu.ac.kr/course/view.php?id=75628" target="_blank" >eTL</a></span>
-                       <span class="grayB"><a href="/mysnu/portal/MS010/ko/TO980/SB010/ME300" target="_parent">상담</a></span>
-          </li>
-        
-      </div>
-      <div id="item2" style="display:none;">
-         
-          <li>
-             <span class="title" title="논리학">논리학</span>
-                       <span class="mintB"><a href="http://etl.snu.ac.kr/course/view.php?id=75854" target="_blank" >eTL</a></span>
-                       <span class="grayB"><a href="#">상담</a></span>
-          </li>
-         
-          <li>
-             <span class="title" title="선형대수학">선형대수학</span>
-                       <span class="mintB"><a href="http://etl.snu.ac.kr/course/view.php?id=76094" target="_blank" >eTL</a></span>
-                       <span class="grayB"><a href="#">상담</a></span>
-          </li>
-        
-        
-           
-            <li style="visibility:hidden;">
-              <span class="title">8hidden2</span>
-              <span class="mintB" style="visibility:hidden;"><a href="#">eTL</a></span>
-                          <span class="grayB" style="visibility:hidden;"><a href="#">상담</a></span>
-            </li>
-           
-            <li style="visibility:hidden;">
-              <span class="title">8hidden2</span>
-              <span class="mintB" style="visibility:hidden;"><a href="#">eTL</a></span>
-                          <span class="grayB" style="visibility:hidden;"><a href="#">상담</a></span>
-            </li>
-           
-            <li style="visibility:hidden;">
-              <span class="title">8hidden2</span>
-              <span class="mintB" style="visibility:hidden;"><a href="#">eTL</a></span>
-                          <span class="grayB" style="visibility:hidden;"><a href="#">상담</a></span>
-            </li>
-           
-            <li style="visibility:hidden;">
-              <span class="title">8hidden2</span>
-              <span class="mintB" style="visibility:hidden;"><a href="#">eTL</a></span>
-                          <span class="grayB" style="visibility:hidden;"><a href="#">상담</a></span>
-            </li>
-          
-        
-      </div>
-             </ul>
-             
-               <div class="page">
-                   <a href="#" id="page1" class="first on" onClick="javascript:pageDisplay(1);">1</a>
-                   <a href="#" id="page2" onClick="javascript:pageDisplay(2);">2</a>
+             <div class="title"><span style="color: #0000ff; font-weight: 100;">SNU Q&A Forum</span> <span class="more"><a href="/qna" target="_blank">더보기</a></span></div>
+             <ul style="width: 200px;"> 
+               <div id="item1">
+                 <% @posts.each do |post| %>
+                 <li>
+                   <a href="/qna/show/<%= post.id %>" target="_blank"><span class="title" style="width: 140px;"><%= post.title %></span></a>
+                   <span class="time"><%= post.user.username %></span>
+                 </li>
+                 <% end %>
                </div>
-           
+             </ul>
          </div>
          <!--(eTL)나의수강강좌//-->                
          <!--eTL공지사항-->

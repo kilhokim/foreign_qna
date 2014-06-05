@@ -21,6 +21,15 @@ p.user_id = 1
 p.category = "class"
 p.title = "About class registration."
 p.content = "I don't know what to do but I want to register for Creative Thinking for Engineers class!!"
-p.views = 1
+p.views = 37
 p.votes = 3
+p.save
+
+p = Post.new
+p.user_id = 2
+p.category = "grades"
+p.title = "My grades are messed up.."
+p.content = "My life is over...fml"
+p.views = 108
+p.votes = 8
 p.save

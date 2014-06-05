@@ -3,16 +3,16 @@
     <h1 id="h-top-questions">Top Questions</h1>
     
     <div id="tabs">
-      <a class="youarehere" href="#">interesting</a>
-      <a href="#">featured</a>
-      <a href="#">hot</a>
-      <a href="#">week</a>
-      <a href="#">month</a>
+      <a<% if @tab == nil || @tab == "hot" %> class="youarehere"<% end %> href="/qna/?tab=hot">hot</a>
+      <a<% if @tab == "popular" %> class="youarehere"<% end %> href="/qna/?tab=popular">popular</a>
+      <a<% if @tab == "today" %> class="youarehere"<% end %> href="/qna/?tab=today">today</a>
+      <a<% if @tab == "week" %> class="youarehere"<% end %> href="/qna/?tab=week">week</a>
+      <a<% if @tab == "alltime" %> class="youarehere"<% end %> href="/qna/?tab=alltime">all time</a>
     </div>
   </div>
   <div id="qlist-wrapper">
     <div id="question-mini-list">
-      <% @posts.reverse.each do |post| %>
+      <% @posts.each do |post| %>
       <div class="question-summary narrow" id="question-summary-<%=post.id%>">
         <div onclick="window.location.href='/qna/show/<%= post.id %>'" class="cp">
           <div class="votes">
@@ -37,12 +37,12 @@
         <div class="summary">
           <h3><a class="question-hyperlink" href="/qna/show/<%= post.id %>"><%= post.title %></a></h3>
           <div class="tags">
-            <a class="post-tag" href="#"><%= post.category %></a>
+            <a class="post-tag" href="/category/<%= post.category %>"><%= post.category %></a>
           </div>
           <div class="started">
-            <a class="started-link" href="/qna/show/<%= post.id %>">asked <span class="relativetime">#m ago</span></a>
+            <a class="started-link" href="/qna/show/<%= post.id %>">asked <span class="relativetime"><%= post.elapsed %></span></a>
             <a href="#"><%= post.user.username %></a>
-            <span class="reputation-score">1</span>
+            <span class="reputation-score"><strong><%= post.user.posts.count %></strong></span>
           </div>
         </div> <!-- end div.summary -->
       </div> <!-- end div.question-summary narrow -->
