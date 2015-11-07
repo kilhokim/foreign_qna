@@ -1,28 +1,27 @@
-== README
+Creative Thinking for Engineers (2014 Spring), SNU
+==============
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This is a source code of term project developed by Kilho Kim for Creative Thinking for Engineers class, 2014 Spring, Seoul National University.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Team Members
+--------------
+
+- Kilho Kim
+- Jaramier Cobrado Joibi
+- Heonsu Cho
+- Seokju Kwon
+- Jaemin Cho
+
+
+Project Overview
+--------------
+
+#### Goal
+
+- To improve quality of life of SNU foreigners by providing a friendly SNU website with better UI
+
+
+#### Libraries and frameworks used
+- Ruby on Rails
+- Bootstrap
